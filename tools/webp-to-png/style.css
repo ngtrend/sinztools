@@ -1,0 +1,67 @@
+/* WEBP to PNG Converter specific styles */
+
+.upload-section {
+	margin: 20px 0;
+}
+
+.upload-section input[type="file"] {
+	display: none;
+}
+
+.upload-section label {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.upload-section label:hover {
+	background-color: #0056b3;
+}
+
+.preview, .result {
+	margin: 20px 0;
+	text-align: center;
+}
+
+.preview img, .result img {
+	max-width: 100%;
+	max-height: 400px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+.btn {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin: 10px;
+	text-decoration: none;
+}
+
+.btn:hover {
+	background-color: #0056b3;
+}
+
+.btn:disabled {
+	background-color: #ccc;
+	cursor: not-allowed;
+}
+
+.error {
+	color: red;
+	margin: 10px 0;
+	font-weight: bold;
+}
+
+.hidden {
+	display: none;
+}
