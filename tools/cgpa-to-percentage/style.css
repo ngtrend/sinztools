@@ -1,0 +1,44 @@
+body {
+	font-family: Arial, sans-serif;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	line-height: 1.6;
+}
+
+h1 {
+	color: #333;
+}
+
+#university-selector {
+	margin: 20px 0;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+}
+
+label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+select {
+	width: 100%;
+	padding: 12px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+	body {
+		padding: 10px;
+	}
+	#university-selector {
+		padding: 15px;
+	}
+}

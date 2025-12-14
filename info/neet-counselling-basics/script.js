@@ -1,0 +1,1 @@
+// NEET Counselling Basics script - no JS needed

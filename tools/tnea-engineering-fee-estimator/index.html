@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Engineering College Fee Estimator (TNEA – Approximate) | SinzTools</title>
+	<meta name="description"
+		content="Estimate Tamil Nadu engineering college fees based on college type and category. Free, fast, and privacy-first TNEA fee estimator.">
+	<link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+	<header>
+		<div class="site-title"><a href="/">SinzTools</a></div>
+		<nav>
+			<a href="/">Home</a>
+			<a href="/">Tools</a>
+			<a href="/about.html">About</a>
+		</nav>
+	</header>
+	<main class="content">
+		<h1>Engineering College Fee Estimator (TNEA)</h1>
+		<p>Estimate approximate annual fees for engineering colleges in Tamil Nadu through TNEA counselling. This tool
+			provides ranges based on college type and category.</p>
+
+		<h2>How engineering college fees work in Tamil Nadu</h2>
+		<p>Engineering college fees in Tamil Nadu vary based on whether the college is government, government-aided, or
+			private. Fees include tuition, exam fees, and other charges. Hostel fees are additional if you choose to
+			stay on campus.</p>
+
+		<h2>What this fee estimator shows</h2>
+		<p>This tool shows approximate annual fee ranges for reference. It combines tuition and hostel fees based on
+			your selections. Actual fees depend on the specific college and course.</p>
+
+		<h2>Factors that affect engineering college fees</h2>
+		<p>Fees depend on college type (government, aided, private), student category (OC, BC, MBC, SC, ST), course
+			branch, and whether you need hostel accommodation. Scholarships and concessions may apply for certain
+			categories.</p>
+
+		<h2>Example fee estimation</h2>
+		<p>For a government college with hostel for an OC student: approximately ₹30,000 – ₹60,000 per year. This is
+			just an example; use the calculator below for your estimate.</p>
+
+		<div id="calculator">
+			<label for="collegeType">College Type:</label>
+			<select id="collegeType">
+				<option value="">Select College Type</option>
+				<option value="government">Government College</option>
+				<option value="aided">Government Aided College</option>
+				<option value="private">Private Self-Financing College</option>
+			</select>
+
+			<label for="category">Student Category:</label>
+			<select id="category">
+				<option value="">Select Category</option>
+				<option value="oc">OC</option>
+				<option value="bc">BC</option>
+				<option value="mbc">MBC / DNC</option>
+				<option value="sc">SC</option>
+				<option value="st">ST</option>
+			</select>
+
+			<label for="hostel">Hostel Required?</label>
+			<select id="hostel">
+				<option value="no">No</option>
+				<option value="yes">Yes</option>
+			</select>
+
+			<button id="estimateBtn">Estimate Annual Fee</button>
+
+			<div id="result"></div>
+		</div>
+
+		<h2>Disclaimer</h2>
+		<p>This tool provides an approximate fee range for reference only. Actual engineering college fees vary by
+			institution, course, year, category, and counselling authority. Always verify fees through official TNEA
+			counselling notifications or college websites. All calculations run entirely in your browser. No personal
+			data is collected, stored, or shared.</p>
+
+		<p><a href="/">Home</a> | <a href="/tools/cutoff-calculators/">Cutoff Calculators Hub</a> | <a
+				href="/tools/tamil-nadu-engineering-cutoff-calculator/">Tamil Nadu Engineering Cutoff Calculator</a> |
+			<a href="/tools/cgpa-to-percentage/">CGPA to Percentage Calculators</a>
+		</p>
+	</main>
+	<footer>
+		<nav>
+			<a href="/about.html">About</a>
+			<a href="/privacy-policy.html">Privacy Policy</a>
+			<a href="/terms.html">Terms</a>
+			<a href="/contact.html">Contact</a>
+		</nav>
+		<p>&copy; 2025 SinzTools. All rights reserved.</p>
+	</footer>
+	<script src="script.js" defer></script>
+</body>
+
+</html>
