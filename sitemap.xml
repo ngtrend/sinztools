@@ -6,33 +6,28 @@
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-		<loc>https://sinztools.app/about.html</loc>
+		<loc>https://sinztools.app/about/</loc>
 		<priority>0.5</priority>
 		<changefreq>yearly</changefreq>
 	</url>
 	<url>
-		<loc>https://sinztools.app/contact.html</loc>
+		<loc>https://sinztools.app/contact/</loc>
 		<priority>0.5</priority>
 		<changefreq>yearly</changefreq>
 	</url>
 	<url>
-		<loc>https://sinztools.app/privacy-policy.html</loc>
+		<loc>https://sinztools.app/privacy-policy/</loc>
 		<priority>0.5</priority>
 		<changefreq>yearly</changefreq>
 	</url>
 	<url>
-		<loc>https://sinztools.app/terms.html</loc>
+		<loc>https://sinztools.app/terms/</loc>
 		<priority>0.5</priority>
 		<changefreq>yearly</changefreq>
 	</url>
 	<url>
 		<loc>https://sinztools.app/tools/</loc>
 		<priority>0.9</priority>
-		<changefreq>weekly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/cutoff-calculators/</loc>
-		<priority>0.8</priority>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
@@ -61,123 +56,8 @@
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-		<loc>https://sinztools.app/tools/cgpa-to-percentage/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/cgpa-to-percentage-anna-university/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/cgpa-to-percentage-jntu/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/cgpa-to-percentage-mumbai-university/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/cgpa-to-percentage-sppu/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/cgpa-to-percentage-vtu/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/neet-marks-to-percentile-calculator/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/tamil-nadu-engineering-cutoff-calculator/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/tamil-nadu-medical-cutoff-calculator/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/tamil-nadu-medical-fee-estimator/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/tamil-nadu-pharmacy-fee-estimator/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/tools/tnea-engineering-fee-estimator/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
 		<loc>https://sinztools.app/tools/webp-to-jpg-converter/</loc>
 		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/</loc>
-		<priority>0.9</priority>
-		<changefreq>weekly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/be-vs-btech/</loc>
-		<priority>0.8</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/courses-you-can-join-through-tnea/</loc>
-		<priority>0.8</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/how-medical-college-fees-work-in-tamil-nadu/</loc>
-		<priority>0.8</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/how-to-find-low-fee-engineering-colleges-in-tamil-nadu/</loc>
-		<priority>0.8</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/medical-counselling-in-tamil-nadu/</loc>
-		<priority>0.8</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/neet-counselling-basics/</loc>
-		<priority>0.8</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/pharmacy-counselling-in-tamil-nadu/</loc>
-		<priority>0.8</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/pharmacy-fee-estimator-guide/</loc>
-		<priority>0.8</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/what-is-tnea-counselling/</loc>
-		<priority>0.8</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://sinztools.app/info/rare-courses-you-may-not-know-exist/</loc>
-		<priority>0.8</priority>
 		<changefreq>monthly</changefreq>
 	</url>
 </urlset>

@@ -1,0 +1,25 @@
+{
+  "name": "sinztools",
+  "version": "1.0.0",
+  "description": "SinzTools is a lightweight, tool-based website focused on SIMPLE, FAST, and FREE web utilities.",
+  "main": "nav.js",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngtrend/sinztools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ngtrend/sinztools/issues"
+  },
+  "homepage": "https://github.com/ngtrend/sinztools#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}

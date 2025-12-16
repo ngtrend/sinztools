@@ -1,1 +1,0 @@
-// Rare Courses Guide script - no JS needed
