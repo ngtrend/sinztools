@@ -17,12 +17,14 @@ description: Convert images between PNG, JPG, and WEBP formats quickly and for f
 <form id="converterForm">
 	<label for="fileInput">Select Image:</label>
 	<input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" required>
+	<label for="fileInput" id="fileInputLabel">Choose File</label>
 	<label for="formatSelect">Output Format:</label>
 	<select id="formatSelect">
 		<option value="png">PNG</option>
 		<option value="jpg">JPG</option>
 		<option value="webp">WEBP</option>
 	</select>
+	<br><br>
 	<button type="button" id="convertBtn">Convert Image</button>
 </form>
 <div id="output"></div>

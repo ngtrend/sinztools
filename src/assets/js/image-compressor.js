@@ -4,6 +4,12 @@ const compressionSelect = document.getElementById('compressionSelect');
 const compressBtn = document.getElementById('compressBtn');
 const output = document.getElementById('output');
 
+// Update label text when file is selected
+fileInput.addEventListener('change', function() {
+    const fileName = this.files[0] ? this.files[0].name : 'Choose File';
+    document.getElementById('fileInputLabel').textContent = fileName;
+});
+
 // Add event listener to compress button
 compressBtn.addEventListener('click', function() {
     const file = fileInput.files[0];

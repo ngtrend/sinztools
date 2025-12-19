@@ -1,3 +1,9 @@
+// Update label text when file is selected
+document.getElementById('fileInput').addEventListener('change', function() {
+    const fileName = this.files[0] ? this.files[0].name : 'Choose File';
+    document.getElementById('fileInputLabel').textContent = fileName;
+});
+
 document.getElementById('convertBtn').addEventListener('click', function () {
 	const fileInput = document.getElementById('fileInput');
 	const formatSelect = document.getElementById('formatSelect');

@@ -16,12 +16,14 @@ description: Compress images online for free. Reduce file size without losing qu
 <form id="compressorForm">
 	<label for="fileInput">Select Image:</label>
 	<input type="file" id="fileInput" accept="image/*" required>
+	<label for="fileInput" id="fileInputLabel">Choose File</label>
 	<label for="compressionSelect">Compression Level:</label>
 	<select id="compressionSelect">
 		<option value="0.9">Low (High Quality)</option>
 		<option value="0.7">Medium</option>
 		<option value="0.5">High (Small File)</option>
 	</select>
+	<br><br>
 	<button type="button" id="compressBtn">Compress Image</button>
 </form>
 <div id="output"></div>

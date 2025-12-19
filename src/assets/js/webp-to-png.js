@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	const result = document.getElementById('result');
 	const convertedImage = document.getElementById('convertedImage');
 	const downloadBtn = document.getElementById('downloadBtn');
+
+	// Update label text when file is selected
+	fileInput.addEventListener('change', function() {
+		const fileName = this.files[0] ? this.files[0].name : 'Choose File';
+		document.getElementById('fileInputLabel').textContent = fileName;
+	});
 	const errorDiv = document.getElementById('error');
 
 	// Handle file selection

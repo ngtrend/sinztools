@@ -4,6 +4,12 @@ const convertBtn = document.getElementById('convertBtn');
 const preview = document.getElementById('preview');
 const output = document.getElementById('output');
 
+// Update label text when file is selected
+fileInput.addEventListener('change', function() {
+    const fileName = this.files[0] ? this.files[0].name : 'Choose File';
+    document.getElementById('fileInputLabel').textContent = fileName;
+});
+
 // Add event listener to the convert button
 convertBtn.addEventListener('click', function () {
 	const file = fileInput.files[0];
