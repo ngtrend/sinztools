@@ -21,5 +21,8 @@
   "homepage": "https://github.com/ngtrend/sinztools#readme",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2"
+  },
+  "dependencies": {
+    "pnpm": "^10.26.0"
   }
 }
