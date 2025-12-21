@@ -38,6 +38,12 @@ convertBtn.addEventListener('click', function() {
         return;
     }
 
+    // Check if WEBP is supported
+    if (!document.createElement('canvas').toDataURL('image/webp').startsWith('data:image/webp')) {
+        errorHandler.showError('WEBP format is not supported in this browser.');
+        return;
+    }
+
     // Create canvas
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -47,23 +53,21 @@ convertBtn.addEventListener('click', function() {
     // Draw image to canvas
     ctx.drawImage(currentImage, 0, 0);
 
-    // Convert to JPG using toBlob
+    // Convert to WEBP using toBlob
     canvas.toBlob(function(blob) {
         // Create download link
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'converted.jpg';
-        a.textContent = 'Download JPG Image';
+        a.download = 'converted.webp';
+        a.textContent = 'Download WEBP Image';
         a.style.display = 'inline-block';
         a.style.padding = '10px 20px';
-            a.style.backgroundColor = '#28a745';
-            a.style.color = 'white';
-            a.style.textDecoration = 'none';
-            a.style.borderRadius = '5px';
-
-            // Display result
-            output.innerHTML = '<p>Conversion complete!</p>';
-            output.appendChild(a);
-        }, 'image/jpeg'); // Convert to JPG
-    };
+        a.style.backgroundColor = '#28a745';
+        a.style.color = 'white';
+        a.style.textDecoration = 'none';
+        a.style.borderRadius = '5px';
+        output.innerHTML = '<p>Conversion complete!</p>';
+        output.appendChild(a);
+    }, 'image/webp');
+});

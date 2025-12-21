@@ -1,8 +1,10 @@
 ---
 layout: tool
-tool: image-compressor
-title: Image Compressor – Reduce Image Size Online | SinzTools
-description: Compress images online for free. Reduce file size without losing quality. Supports PNG, JPG, WEBP. Fast and secure browser-based tool.
+tool: webp-to-jpg
+title: WEBP to JPG Converter – Free Online Tool | SinzTools
+description: Convert WEBP to JPG online for free. Fast, secure, and easy. No uploads required - works in your browser.
+permalink: /tools/webp-to-jpg/
+date: 2025-12-20
 ---
 
 <style>
@@ -12,16 +14,13 @@ description: Compress images online for free. Reduce file size without losing qu
 </style>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<h1>Image Compressor</h1>
-<p>Compress your images to reduce file size while maintaining quality. Works entirely in your browser for
-	privacy
-	and speed.</p>
+<h1>WEBP to JPG Converter</h1>
+<p>Convert WEBP images to JPG format instantly in your browser. No uploads to servers - your files stay private and secure.</p>
 <h2>How to Use</h2>
-<p>Select an image file, choose compression level, and click Compress. Your optimized image will be ready for
-	download with size details.</p>
+<p>Select a WEBP image file and click Convert. Your JPG image will be ready for download.</p>
 
 <div class="drop-zone" id="dropZone">
-	<input type="file" id="fileInput" accept="image/*" required style="display: none;">
+	<input type="file" id="fileInput" accept="image/webp" required style="display: none;">
 	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
 		<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/>
 	</svg>
@@ -32,27 +31,17 @@ description: Compress images online for free. Reduce file size without losing qu
 	<strong>Selected file:</strong> <span id="fileName"></span> (<span id="fileSize"></span>)
 </div>
 
-<label for="compressionSelect">Compression Level:</label>
-<select id="compressionSelect">
-	<option value="0.9">Low (High Quality)</option>
-	<option value="0.7">Medium</option>
-	<option value="0.5">High (Small File)</option>
-</select>
-<br><br>
-<button type="button" id="compressBtn">Compress Image</button>
+<button type="button" id="convertBtn">Convert to JPG</button>
 
 <div id="errorMessage" class="error-message"></div>
 <div id="output"></div>
-<h2>How this Image Compressor works</h2>
-<p>This tool uses canvas compression to reduce image file sizes. Quality settings adjust the compression level -
-	lower quality means smaller files but potentially less detail.</p>
-<h2>Image compression & privacy</h2>
-<p>Supports PNG, JPG, and WEBP formats. All compression happens locally in your browser - images stay private
-	and
-	secure.</p>
+<h2>How this converter works</h2>
+<p>This tool uses your browser's canvas to convert WEBP to JPG. All processing happens locally without uploading to any server.</p>
+<h2>Privacy</h2>
+<p>Your images never leave your device, keeping your files completely private.</p>
 <h3>Related tools</h3>
 <ul>
 	<li><a href="../image-converter/">Image Converter</a></li>
+	<li><a href="../image-compressor/">Image Compressor</a></li>
 	<li><a href="../png-to-jpg/">PNG to JPG Converter</a></li>
-	<li><a href="../jpg-to-webp/">JPG to WEBP Converter</a></li>
 </ul>

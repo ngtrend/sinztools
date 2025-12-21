@@ -1,27 +1,41 @@
 // Favicon Generator Script
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('faviconForm');
     const fileInput = document.getElementById('fileInput');
+    const dropZone = document.getElementById('dropZone');
     const generateBtn = document.getElementById('generateBtn');
     const output = document.getElementById('output');
+    const fileInfo = document.getElementById('fileInfo');
+    const fileName = document.getElementById('fileName');
+    const fileSize = document.getElementById('fileSize');
 
-    // Update label text when file is selected
-    fileInput.addEventListener('change', function() {
-        const fileName = fileInput.files[0] ? fileInput.files[0].name : 'Choose File';
-        document.getElementById('fileInputLabel').textContent = fileName;
+    let currentImage = null;
+    let currentFile = null;
+
+    // Initialize image upload handler
+    initImageUpload(dropZone, fileInput, (img, file) => {
+        currentImage = img;
+        currentFile = file;
+        output.innerHTML = ''; // Clear previous output
+
+        // Show file info
+        fileName.textContent = file.name;
+        fileSize.textContent = formatFileSize(file.size);
+        fileInfo.style.display = 'block';
     });
 
     generateBtn.addEventListener('click', async function() {
-        const file = fileInput.files[0];
-        if (!file) {
-            alert('Please select an image file.');
+        // Clear any previous error message
+        errorHandler.clearError();
+
+        if (!currentImage || !currentFile) {
+            errorHandler.showError('Please select an image file.');
             return;
         }
 
         output.innerHTML = '<p>Generating favicons...</p>';
 
         try {
-            const result = await generateFavicons(file);
+            const result = await generateFavicons(currentFile);
             displayFavicons(result.favicons, result.icoUrl, result.manifestUrl, result.zipUrl);
         } catch (error) {
             output.innerHTML = '<p>Error generating favicons: ' + error.message + '</p>';

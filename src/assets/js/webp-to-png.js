@@ -2,43 +2,26 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 	const fileInput = document.getElementById('fileInput');
-	const preview = document.getElementById('preview');
-	const originalImage = document.getElementById('originalImage');
+	const dropZone = document.getElementById('dropZone');
 	const convertBtn = document.getElementById('convertBtn');
-	const result = document.getElementById('result');
-	const convertedImage = document.getElementById('convertedImage');
-	const downloadBtn = document.getElementById('downloadBtn');
+	const output = document.getElementById('output');
+	const fileInfo = document.getElementById('fileInfo');
+	const fileName = document.getElementById('fileName');
+	const fileSize = document.getElementById('fileSize');
 
-	// Update label text when file is selected
-	fileInput.addEventListener('change', function() {
-		const fileName = this.files[0] ? this.files[0].name : 'Choose File';
-		document.getElementById('fileInputLabel').textContent = fileName;
-	});
-	const errorDiv = document.getElementById('error');
+	let originalFile = null;
 
-	// Handle file selection
-	fileInput.addEventListener('change', function(e) {
-		const file = e.target.files[0];
-		if (!file) return;
+	// Initialize image upload handler
+	initImageUpload(dropZone, fileInput, (img, file) => {
+		originalFile = file;
+		// Clear any previous results and errors
+		errorHandler.clearError();
+		output.innerHTML = '';
 
-		// Validate file type
-		if (!file.type.includes('webp')) {
-			showError('Please select a WEBP image file.');
-			return;
-		}
-
-		// Clear previous results
-		hideElements();
-		errorDiv.classList.add('hidden');
-
-		// Show preview
-		const reader = new FileReader();
-		reader.onload = function(e) {
-			originalImage.src = e.target.result;
-			preview.classList.remove('hidden');
-			convertBtn.classList.remove('hidden');
-		};
-		reader.readAsDataURL(file);
+		// Show file info
+		fileName.textContent = file.name;
+		fileSize.textContent = formatFileSize(file.size);
+		fileInfo.style.display = 'block';
 	});
 
 	// Handle conversion
@@ -57,26 +40,22 @@ document.addEventListener('DOMContentLoaded', function() {
 			// Convert to PNG blob
 			canvas.toBlob(function(blob) {
 				const url = URL.createObjectURL(blob);
-				convertedImage.src = url;
-				result.classList.remove('hidden');
+				const a = document.createElement('a');
+				a.href = url;
+				a.download = 'converted.png';
+				a.textContent = 'Download PNG Image';
+				a.style.display = 'inline-block';
+				a.style.padding = '10px 20px';
+				a.style.backgroundColor = '#28a745';
+				a.style.color = 'white';
+				a.style.textDecoration = 'none';
+				a.style.borderRadius = '5px';
 
-				// Set download link
-				downloadBtn.href = url;
-				downloadBtn.download = 'converted.png';
+				// Display results
+				output.innerHTML = `<p>Conversion complete! File size: ${(blob.size / 1024).toFixed(1)} KB</p>`;
+				output.appendChild(a);
 			}, 'image/png');
 		};
-		img.src = originalImage.src;
+		img.src = URL.createObjectURL(originalFile);
 	});
-
-	function showError(message) {
-		errorDiv.textContent = message;
-		errorDiv.classList.remove('hidden');
-		hideElements();
-	}
-
-	function hideElements() {
-		preview.classList.add('hidden');
-		convertBtn.classList.add('hidden');
-		result.classList.add('hidden');
-	}
 });

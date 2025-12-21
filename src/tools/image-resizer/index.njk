@@ -1,0 +1,129 @@
+---
+layout: tool
+tool: image-resizer
+title: Image Resizer – Resize Images Online | SinzTools
+description: Resize images instantly in your browser. Change dimensions while maintaining quality. No uploads required, 100% client-side processing.
+permalink: /tools/image-resizer/
+date: 2025-12-20
+---
+
+<style>
+.resizer-container { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+.preview-panel { flex: 1; min-width: 300px; }
+canvas { max-width: 100%; border: 1px solid #ccc; }
+.controls { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+.control-group { margin-bottom: 15px; }
+.control-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+.control-group input[type="number"] { width: 100px; padding: 5px; }
+.control-group input[type="checkbox"] { margin-right: 8px; }
+.control-group label[for="aspectRatioCheckbox"] { display: inline; margin-bottom: 0; }
+.checkbox-group { display: flex; align-items: center; gap: 10px; }
+.preset-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
+.preset-btn { padding: 5px 10px; background: #e9ecef; border: 1px solid #ccc; cursor: pointer; border-radius: 4px; }
+.preset-btn:hover { background: #dee2e6; }
+.percentage-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
+.percentage-btn { padding: 5px 10px; background: #e9ecef; border: 1px solid #ccc; cursor: pointer; border-radius: 4px; }
+.percentage-btn:hover { background: #dee2e6; }
+.format-select { margin-bottom: 15px; }
+.info-display { margin-top: 10px; font-size: 14px; color: #666; }
+.download-btn { display: none; margin-top: 10px; }
+.download-btn.visible { display: flex; align-items: center; gap: 8px; }
+.download-btn .icon { width: 16px; height: 16px; }
+.privacy-note { font-size: 14px; color: #666; margin-top: 10px; }
+.drop-zone { border: 2px dashed #ccc; padding: 20px; text-align: center; margin-bottom: 15px; border-radius: 8px; background: #fafafa; }
+.drop-zone.dragover { border-color: #007bff; background: #e7f3ff; }
+.drop-zone .icon { width: 24px; height: 24px; color: #666; margin-bottom: 10px; }
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<h1>Image Resizer</h1>
+<p>Resize your images to any dimensions instantly in your browser. Maintain aspect ratio or set custom sizes.</p>
+<p><small>Runs locally — no uploads</small></p>
+
+<div class="controls">
+	<div class="control-group">
+		<div class="drop-zone" id="dropZone">
+			<input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" required style="display: none;">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/>
+			</svg>
+			<p>Drop an image here or <label for="fileInput" style="color: #007bff; cursor: pointer;">browse</label></p>
+		</div>
+	</div>
+	<div class="control-group">
+		<label>Preset Sizes:</label>
+		<div class="preset-buttons">
+			<button class="preset-btn" data-width="1920" data-height="1080">1920x1080</button>
+			<button class="preset-btn" data-width="1080" data-height="1080">1080x1080</button>
+			<button class="preset-btn" data-width="1280" data-height="720">1280x720</button>
+			<button class="preset-btn" data-width="800" data-height="600">800x600</button>
+			<button class="preset-btn" data-width="400" data-height="400">400x400</button>
+		</div>
+	</div>
+	<div class="control-group">
+		<label>Percentage Resize:</label>
+		<div class="percentage-buttons">
+			<button class="percentage-btn" data-percentage="100">100%</button>
+			<button class="percentage-btn" data-percentage="75">75%</button>
+			<button class="percentage-btn" data-percentage="50">50%</button>
+			<button class="percentage-btn" data-percentage="25">25%</button>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="widthInput">Width (px):</label>
+		<input type="number" id="widthInput" min="1" placeholder="Width">
+	</div>
+	<div class="control-group">
+		<label for="heightInput">Height (px):</label>
+		<input type="number" id="heightInput" min="1" placeholder="Height">
+	</div>
+	<div class="control-group">
+		<input type="checkbox" id="aspectRatioCheckbox" checked>
+		<label for="aspectRatioCheckbox">Maintain aspect ratio</label>
+	</div>
+	<div class="control-group format-select">
+		<label for="formatSelect">Output Format:</label>
+		<select id="formatSelect">
+			<option value="original">Keep original format</option>
+			<option value="jpg">JPG</option>
+			<option value="png">PNG</option>
+			<option value="webp">WEBP</option>
+		</select>
+	</div>
+	<div id="infoDisplay" class="info-display"></div>
+	<div id="errorMessage" class="error-message"></div>
+	<button id="resizeBtn">Resize Image</button>
+	<div id="loader">Resizing...</div>
+	<button id="downloadBtn" class="download-btn">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+			<path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15M9 12l3 3m0 0 3-3m-3 3V2.25"/>
+		</svg>
+		Download Resized Image
+	</button>
+	<div class="privacy-note">Your image is processed entirely in your browser. No data is sent to any server.</div>
+</div>
+
+<div class="resizer-container">
+	<div class="preview-panel">
+		<h3>Original</h3>
+		<canvas id="originalCanvas"></canvas>
+	</div>
+	<div class="preview-panel">
+		<h3>Resized</h3>
+		<canvas id="resizedCanvas"></canvas>
+	</div>
+</div>
+
+<h2>How this Image Resizer works</h2>
+<p>This tool uses your browser's canvas to resize images client-side. When you select an image, it's displayed in the original preview. Enter your desired dimensions, and click Resize to see the result. All processing happens locally without uploading to any server.</p>
+
+<h2>Supported formats & features</h2>
+<p>Supports PNG, JPG, and WEBP images. You can set custom width and height, or maintain the original aspect ratio. Images are resized using high-quality canvas rendering.</p>
+
+<h3>Related tools</h3>
+<ul>
+	<li><a href="../image-compressor/">Image Compressor</a></li>
+	<li><a href="../image-converter/">Image Converter</a></li>
+	<li><a href="../favicon-generator/">Favicon Generator</a></li>
+</ul>
+

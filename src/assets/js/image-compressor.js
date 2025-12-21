@@ -1,25 +1,40 @@
 // Get DOM elements
 const fileInput = document.getElementById('fileInput');
+const dropZone = document.getElementById('dropZone');
 const compressionSelect = document.getElementById('compressionSelect');
 const compressBtn = document.getElementById('compressBtn');
 const output = document.getElementById('output');
+const fileInfo = document.getElementById('fileInfo');
+const fileName = document.getElementById('fileName');
+const fileSize = document.getElementById('fileSize');
 
-// Update label text when file is selected
-fileInput.addEventListener('change', function() {
-    const fileName = this.files[0] ? this.files[0].name : 'Choose File';
-    document.getElementById('fileInputLabel').textContent = fileName;
+let currentImage = null;
+let currentFile = null;
+
+// Initialize image upload handler
+initImageUpload(dropZone, fileInput, (img, file) => {
+    currentImage = img;
+    currentFile = file;
+    output.innerHTML = ''; // Clear previous output
+
+    // Show file info
+    fileName.textContent = file.name;
+    fileSize.textContent = formatFileSize(file.size);
+    fileInfo.style.display = 'block';
 });
 
 // Add event listener to compress button
 compressBtn.addEventListener('click', function() {
-    const file = fileInput.files[0];
-    if (!file) {
-        output.innerHTML = '<p>Please select an image file.</p>';
+    // Clear any previous error message
+    errorHandler.clearError();
+
+    if (!currentImage || !currentFile) {
+        errorHandler.showError('Please select an image file.');
         return;
     }
 
     const quality = parseFloat(compressionSelect.value);
-    const originalSize = file.size;
+    const originalSize = currentFile.size;
 
     // Create image element
     const img = new Image();

@@ -1,20 +1,30 @@
 // Get references to the HTML elements
 const fileInput = document.getElementById('fileInput');
+const dropZone = document.getElementById('dropZone');
 const convertBtn = document.getElementById('convertBtn');
-const preview = document.getElementById('preview');
 const output = document.getElementById('output');
+const fileInfo = document.getElementById('fileInfo');
+const fileName = document.getElementById('fileName');
+const fileSize = document.getElementById('fileSize');
 
-// Update label text when file is selected
-fileInput.addEventListener('change', function() {
-    const fileName = this.files[0] ? this.files[0].name : 'Choose File';
-    document.getElementById('fileInputLabel').textContent = fileName;
+let originalFile = null;
+
+// Initialize image upload handler
+initImageUpload(dropZone, fileInput, (img, file) => {
+    originalFile = file;
+    // Clear any previous output
+    output.innerHTML = '';
+
+    // Show file info
+    fileName.textContent = file.name;
+    fileSize.textContent = formatFileSize(file.size);
+    fileInfo.style.display = 'block';
 });
 
 // Add event listener to the convert button
 convertBtn.addEventListener('click', function () {
-	const file = fileInput.files[0];
-	if (!file) {
-		output.innerHTML = '<p>Please select a WEBP image file.</p>';
+	if (!originalFile) {
+		errorHandler.showError('Please select a WEBP image file.');
 		return;
 	}
 

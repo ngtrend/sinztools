@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     generateBtn.addEventListener('click', async function() {
         const file = fileInput.files[0];
         if (!file) {
-            alert('Please select an image file.');
+            errorHandler.showError('Please select an image file.');
             return;
         }
 

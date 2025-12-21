@@ -1,0 +1,92 @@
+---
+layout: tool
+tool: png-to-webp
+title: PNG to WEBP Converter – Free Online Tool | SinzTools
+description: Convert PNG to WEBP online for free. Fast, secure, and easy. No uploads required - works in your browser.
+permalink: /tools/png-to-webp/
+date: 2025-12-20
+---
+
+<style>
+.drop-zone { border: 2px dashed #ccc; padding: 20px; text-align: center; margin-bottom: 15px; border-radius: 8px; background: #fafafa; }
+.drop-zone.dragover { border-color: #007bff; background: #e7f3ff; }
+.drop-zone .icon { width: 24px; height: 24px; color: #666; margin-bottom: 10px; }
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<h1>PNG to WEBP Converter</h1>
+<p>Convert PNG images to WEBP format instantly in your browser. No uploads to servers - your files stay private and secure.</p>
+<h2>How to Use</h2>
+<p>Select a PNG image file and click Convert. Your WEBP image will be ready for download.</p>
+
+<div class="drop-zone" id="dropZone">
+	<input type="file" id="fileInput" accept="image/png" required style="display: none;">
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/>
+	</svg>
+	<p>Drop an image here or <label for="fileInput" style="color: #007bff; cursor: pointer;">browse</label></p>
+</div>
+
+<div id="fileInfo" style="display: none; margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px; border-left: 4px solid #007bff;">
+	<strong>Selected file:</strong> <span id="fileName"></span> (<span id="fileSize"></span>)
+</div>
+
+<button type="button" id="convertBtn">Convert to WEBP</button>
+
+<div id="errorMessage" class="error-message"></div>
+<div id="output"></div>
+<h2>How this converter works</h2>
+<p>This tool uses your browser's canvas to convert PNG to WEBP. All processing happens locally without uploading to any server.</p>
+<h2>Privacy</h2>
+<p>Your images never leave your device, keeping your files completely private.</p>
+<h3>Related tools</h3>
+<ul>
+	<li><a href="../image-converter/">Image Converter</a></li>
+	<li><a href="../image-compressor/">Image Compressor</a></li>
+	<li><a href="../jpg-to-webp/">JPG to WEBP Converter</a></li>
+</ul>
+
+<script>
+document.getElementById('convertBtn').addEventListener('click', async () => {
+    const fileInput = document.getElementById('fileInput');
+    const output = document.getElementById('output');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        output.innerHTML = '<p style="color: red;">Please select a PNG file.</p>';
+        return;
+    }
+
+    if (!file.type.startsWith('image/png')) {
+        output.innerHTML = '<p style="color: red;">Please select a valid PNG file.</p>';
+        return;
+    }
+
+    output.innerHTML = '<p>Converting...</p>';
+
+    try {
+        const img = new Image();
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = file.name.replace(/\.png$/i, '.webp');
+                a.textContent = 'Download WEBP';
+                output.innerHTML = '<p>Conversion complete!</p>';
+                output.appendChild(a);
+            }, 'image/webp');
+        };
+        img.src = URL.createObjectURL(file);
+    } catch (error) {
+        output.innerHTML = '<p style="color: red;">Error converting image. Please try again.</p>';
+        console.error(error);
+    }
+});
+</script>
