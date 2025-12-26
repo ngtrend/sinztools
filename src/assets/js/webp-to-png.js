@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	let originalFile = null;
 
-	// Initialize image upload handler
+	// Initialize button state
+	convertBtn.disabled = true;
+
+	// Initialize image selection handler
 	initImageUpload(dropZone, fileInput, (img, file) => {
 		originalFile = file;
 		// Clear any previous results and errors
@@ -22,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		fileName.textContent = file.name;
 		fileSize.textContent = formatFileSize(file.size);
 		fileInfo.style.display = 'block';
+		
+		// Enable convert button
+		convertBtn.disabled = false;
 	});
 
 	// Handle conversion

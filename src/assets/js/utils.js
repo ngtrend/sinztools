@@ -40,8 +40,8 @@ function formatFileSize(bytes) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
-// Reusable image upload handler for all SinzTools image tools
-// Usage: initImageUpload(dropZoneElement, fileInputElement, (image, file) => { ... })
+// Reusable image selection handler for all SinzTools image tools
+// Usage: initImageSelection(dropZoneElement, fileInputElement, (image, file) => { ... })
 // - dropZoneElement: The drop zone DOM element
 // - fileInputElement: The hidden file input DOM element
 // - callback: Function called with (Image object, File object) when image is loaded

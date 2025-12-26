@@ -2,55 +2,103 @@
 layout: base
 title: Free Online Tools for Images, Files & Everyday Utilities | SinzTools
 description: Free online tools for images, files & everyday utilities. Convert, compress, resize images and more. No uploads required - works in your browser.
+head: |-
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "SinzTools",
+        "url": "https://www.sinztools.app/",
+        "description": "Free, privacy-first online tools for images and PDFs that run locally in your browser."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do my files get uploaded to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most SinzTools run entirely in your browser, so your files stay on your device."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is SinzTools free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. SinzTools provides free tools for common image and PDF tasks without sign-ups."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What can I do with SinzTools?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can compress images, convert image formats (PNG/JPG/WEBP), resize or crop images, merge or split PDFs, and more."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 ---
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<h1>Free Online Tools for Images, Files & Everyday Utilities</h1>
-<p>Privacy-first tools that work directly in your browser.</p>
-<p>Most tools run locally without uploading files to any server.</p>
-<p>Fast, secure, and easy to use on any device.</p>
-<section class="tools" id="main-content">
-	<h2>Available Tools</h2>
-	<div class="tool-list">
-		<div class="tool-item">
-			<h3><a href="tools/image-converter/">Image Converter</a></h3>
-			<p>Convert images between PNG, JPG, and WEBP formats.</p>
+<div id="main-content">
+	<h1>Free Online Tools for Images, PDFs & Everyday Utilities</h1>
+	<p>SinzTools is a collection of fast, privacy-first tools that run directly in your browser.</p>
+	<p>Use popular utilities like an <a href="/tools/image-compressor/">image compressor</a>, <a href="/tools/image-converter/">image converter</a>, <a href="/tools/image-resizer/">image resizer</a>, and PDF tools like <a href="/tools/pdf-merge/">merge PDFs</a> or <a href="/tools/pdf-split/">split PDFs</a>.</p>
+
+	<h2>Why people use SinzTools</h2>
+	<ul>
+		<li><strong>Privacy-first:</strong> most tools run locally — no uploads required</li>
+		<li><strong>Fast:</strong> instant results for common image/PDF tasks</li>
+		<li><strong>Simple:</strong> no accounts, no installs, works on any device</li>
+	</ul>
+	<p><a href="/tools/">Browse all tools</a> to find the right utility for your workflow.</p>
+
+	<section class="tools">
+		<h2>Popular tools</h2>
+		<div class="tool-list">
+			{% for categoryKey, category in tools.categories %}
+			{% for tool in category.tools %}
+			{% if tool.featured %}
+			<div class="tool-item">
+				<h3><a href="/tools/{{ tool.slug }}/">{{ tool.name }}</a></h3>
+				<p>{{ tool.description }}.</p>
+			</div>
+			{% endif %}
+			{% endfor %}
+			{% endfor %}
 		</div>
-		<div class="tool-item">
-			<h3><a href="tools/image-compressor/">Image Compressor</a></h3>
-			<p>Reduce image file sizes while maintaining quality.</p>
-		</div>
-		<div class="tool-item">
-			<h3><a href="tools/image-resizer/">Image Resizer</a></h3>
-			<p>Resize images to custom dimensions instantly.</p>
-		</div>
-		<div class="tool-item">
-			<h3><a href="tools/image-crop/">Image Crop Tool</a></h3>
-			<p>Crop images to select rectangular areas.</p>
-		</div>
-		<div class="tool-item">
-			<h3><a href="tools/favicon-generator/">Favicon Generator</a></h3>
-			<p>Create favicons from images for websites.</p>
-		</div>
-		<div class="tool-item">
-			<h3><a href="tools/png-to-jpg/">PNG to JPG Converter</a></h3>
-			<p>Convert PNG images to JPG format for smaller files.</p>
-		</div>
-		<div class="tool-item">
-			<h3><a href="tools/png-to-webp/">PNG to WEBP Converter</a></h3>
-			<p>Convert PNG images to WEBP for better compression.</p>
-		</div>
-		<div class="tool-item">
-			<h3><a href="tools/jpg-to-webp/">JPG to WEBP Converter</a></h3>
-			<p>Convert JPG images to WEBP for better compression.</p>
-		</div>
-		<div class="tool-item">
-			<h3><a href="tools/webp-to-jpg/">WEBP to JPG Converter</a></h3>
-			<p>Convert WEBP images to JPG format online for free.</p>
-		</div>
-		<div class="tool-item">
-			<h3><a href="tools/webp-to-png/">WEBP to PNG Converter</a></h3>
-			<p>Convert WEBP images to PNG format online for free.</p>
-		</div>
-	</div>
-</section>
+	</section>
+
+	<h2>Image tools</h2>
+	<p>Convert, compress, resize, crop, and optimize images (PNG, JPG, WEBP) quickly.</p>
+	<ul>
+		{% for tool in tools.categories.image.tools %}
+		<li><a href="/tools/{{ tool.slug }}/">{{ tool.name }}</a> — {{ tool.description }}</li>
+		{% endfor %}
+	</ul>
+
+	<h2>PDF tools</h2>
+	<p>Work with PDFs in your browser for common tasks like merging and splitting files.</p>
+	<ul>
+		{% for tool in tools.categories.pdf.tools %}
+		<li><a href="/tools/{{ tool.slug }}/">{{ tool.name }}</a> — {{ tool.description }}</li>
+		{% endfor %}
+	</ul>
+
+	<h2>FAQ</h2>
+	<h3>Do you upload my files?</h3>
+	<p>Most tools are designed to run locally in your browser, so your files stay on your device.</p>
+	<h3>Is this free?</h3>
+	<p>Yes — SinzTools is free and does not require sign-ups.</p>
+	<h3>Which tools are most popular?</h3>
+	<p>Many users start with <a href="/tools/image-compressor/">Image Compressor</a>, <a href="/tools/image-converter/">Image Converter</a>, and <a href="/tools/pdf-merge/">PDF Merge Tool</a>.</p>
+</div>

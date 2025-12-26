@@ -4,84 +4,39 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	{% set baseUrl = "https://www.sinztools.app" %}
+	{% set staticPages = [
+		"/",
+		"/tools/",
+		"/about/",
+		"/contact/",
+		"/privacy-policy/",
+		"/terms/"
+	] %}
+
+	{% for url in staticPages %}
 	<url>
-		<loc>https://www.sinztools.app/</loc>
+		<loc>{{ baseUrl }}{{ url }}</loc>
+		{% if url == "/" %}
 		<priority>1.0</priority>
 		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/about/</loc>
-		<priority>0.5</priority>
-		<changefreq>yearly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/contact/</loc>
-		<priority>0.5</priority>
-		<changefreq>yearly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/privacy-policy/</loc>
-		<priority>0.5</priority>
-		<changefreq>yearly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/terms/</loc>
-		<priority>0.5</priority>
-		<changefreq>yearly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/tools/</loc>
+		{% elseif url == "/tools/" %}
 		<priority>0.9</priority>
 		<changefreq>weekly</changefreq>
+		{% else %}
+		<priority>0.5</priority>
+		<changefreq>yearly</changefreq>
+		{% endif %}
 	</url>
+	{% endfor %}
+
+	{% for categoryKey, category in tools.categories %}
+	{% for tool in category.tools %}
 	<url>
-		<loc>https://www.sinztools.app/tools/favicon-generator/</loc>
+		<loc>{{ baseUrl }}/tools/{{ tool.slug }}/</loc>
 		<priority>0.7</priority>
 		<changefreq>monthly</changefreq>
 	</url>
-	<url>
-		<loc>https://www.sinztools.app/tools/image-compressor/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/tools/image-converter/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/tools/image-crop/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/tools/image-resizer/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/tools/jpg-to-webp/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/tools/png-to-jpg/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/tools/png-to-webp/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/tools/webp-to-png/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-		<loc>https://www.sinztools.app/tools/webp-to-jpg/</loc>
-		<priority>0.7</priority>
-		<changefreq>monthly</changefreq>
-	</url>
+	{% endfor %}
+	{% endfor %}
 </urlset>

@@ -15,11 +15,14 @@ const errorMessage = document.getElementById('errorMessage');
 // Hide error message by default
 errorMessage.style.display = 'none';
 
+// Initialize button state
+resizeBtn.disabled = true;
+
 let originalImage = null;
 let originalAspectRatio = 1;
 let originalFile = null;
 
-// Initialize image upload handler
+// Initialize image selection handler
 initImageUpload(dropZone, fileInput, (img, file) => {
     originalImage = img;
     originalFile = file;
@@ -42,6 +45,9 @@ initImageUpload(dropZone, fileInput, (img, file) => {
     const resizedCtx = resizedCanvas.getContext('2d');
     resizedCtx.clearRect(0, 0, resizedCanvas.width, resizedCanvas.height);
     downloadBtn.classList.remove('visible');
+    
+    // Enable resize button
+    resizeBtn.disabled = false;
 });
 
 // Preset buttons

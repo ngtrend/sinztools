@@ -9,7 +9,10 @@ const fileSize = document.getElementById('fileSize');
 
 let originalFile = null;
 
-// Initialize image upload handler
+// Initialize button state
+convertBtn.disabled = true;
+
+// Initialize image selection handler
 initImageUpload(dropZone, fileInput, (img, file) => {
     originalFile = file;
     // Clear any previous output
@@ -19,6 +22,9 @@ initImageUpload(dropZone, fileInput, (img, file) => {
     fileName.textContent = file.name;
     fileSize.textContent = formatFileSize(file.size);
     fileInfo.style.display = 'block';
+    
+    // Enable convert button
+    convertBtn.disabled = false;
 });
 
 // Add event listener to the convert button

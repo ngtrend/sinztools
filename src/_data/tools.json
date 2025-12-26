@@ -1,0 +1,106 @@
+{
+  "_comment": "Tool configuration for SinzTools. Add new tools here and they will automatically appear on the home page (if featured=true) and tools index page.",
+  "_instructions": "To add a new tool: 1) Add entry below with slug, name, description, and featured flag 2) Create tool directory in src/tools/ 3) Run npm run build",
+  "_fields": {
+    "slug": "URL slug for the tool (must match directory name in src/tools/)",
+    "name": "Display name of the tool",
+    "description": "Short description for tool listings",
+    "featured": "true = appears on home page, false = tools index only"
+  },
+  "categories": {
+    "pdf": {
+      "name": "PDF tools",
+      "tools": [
+        {
+          "slug": "pdf-merge",
+          "name": "PDF Merge Tool",
+          "description": "Combine multiple PDF files into one",
+          "featured": false
+        },
+        {
+          "slug": "pdf-split",
+          "name": "PDF Split Tool",
+          "description": "Extract pages from PDF documents",
+          "featured": true
+        }
+      ]
+    },
+    "image": {
+      "name": "Image tools",
+      "tools": [
+        {
+          "slug": "image-to-pdf",
+          "name": "Image to PDF Converter",
+          "description": "Convert images to PDF documents",
+          "featured": true
+        },
+        {
+          "slug": "image-converter",
+          "name": "Image Converter",
+          "description": "Convert between multiple image formats",
+          "featured": true
+        },
+        {
+          "slug": "image-compressor",
+          "name": "Image Compressor",
+          "description": "Reduce image file sizes",
+          "featured": true
+        },
+        {
+          "slug": "image-resizer",
+          "name": "Image Resizer",
+          "description": "Resize images to custom dimensions",
+          "featured": true
+        },
+        {
+          "slug": "image-watermark",
+          "name": "Image Watermark Tool",
+          "description": "Add text watermarks to images",
+          "featured": false
+        },
+        {
+          "slug": "image-crop",
+          "name": "Image Crop Tool",
+          "description": "Crop images to custom areas",
+          "featured": true
+        },
+        {
+          "slug": "favicon-generator",
+          "name": "Favicon Generator",
+          "description": "Create favicons from images",
+          "featured": true
+        },
+        {
+          "slug": "png-to-jpg",
+          "name": "PNG to JPG Converter",
+          "description": "Convert PNG images to JPG",
+          "featured": true
+        },
+        {
+          "slug": "png-to-webp",
+          "name": "PNG to WEBP Converter",
+          "description": "Convert PNG images to WEBP",
+          "featured": true
+        },
+        {
+          "slug": "jpg-to-webp",
+          "name": "JPG to WEBP Converter",
+          "description": "Convert JPG to WEBP format",
+          "featured": true
+        },
+        {
+          "slug": "webp-to-jpg",
+          "name": "WEBP to JPG Converter",
+          "description": "Convert WEBP to JPG",
+          "featured": true
+        },
+        {
+          "slug": "webp-to-png",
+          "name": "WEBP to PNG Converter",
+          "description": "Convert WEBP images to PNG",
+          "featured": true
+        }
+      ]
+    }
+  }
+}

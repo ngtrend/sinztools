@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentImage = null;
     let currentFile = null;
 
+    // Initialize button state
+    generateBtn.disabled = true;
+
     // Initialize image upload handler
     initImageUpload(dropZone, fileInput, (img, file) => {
         currentImage = img;
@@ -21,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
         fileName.textContent = file.name;
         fileSize.textContent = formatFileSize(file.size);
         fileInfo.style.display = 'block';
+        
+        // Enable generate button
+        generateBtn.disabled = false;
     });
 
     generateBtn.addEventListener('click', async function() {

@@ -13,6 +13,9 @@ const errorMessage = document.getElementById('errorMessage');
 loader.style.display = 'none';
 errorMessage.style.display = 'none';
 
+// Initialize button state
+cropBtn.disabled = true;
+
 let originalImage = null;
 let originalFile = null;
 let selection = null; // {x, y, width, height}
@@ -38,7 +41,7 @@ function getEventCoords(e) {
     }
 }
 
-// Initialize image upload handler
+// Initialize image selection handler
 initImageUpload(dropZone, fileInput, (img, file) => {
     originalImage = img;
     originalFile = file;
@@ -62,6 +65,9 @@ initImageUpload(dropZone, fileInput, (img, file) => {
     // Clear preview
     previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
     downloadBtn.classList.remove('visible');
+    
+    // Enable crop button
+    cropBtn.disabled = false;
 });
 
 // Mouse and touch event handlers for selection

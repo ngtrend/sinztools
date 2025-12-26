@@ -7,7 +7,29 @@
 	{% if description %}
 	<meta name="description" content="{{ description }}">
 	{% endif %}
-	<link rel="canonical" href="https://sinztools.app{{ page.url }}">
+	<meta name="robots" content="index,follow">
+	<meta name="theme-color" content="#2563eb">
+	<link rel="canonical" href="https://www.sinztools.app{{ page.url }}">
+
+	{# Social previews (Open Graph / Twitter) #}
+	<meta property="og:site_name" content="SinzTools">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="{{ title or "SinzTools" }}">
+	{% if description %}
+	<meta property="og:description" content="{{ description }}">
+	{% endif %}
+	<meta property="og:url" content="https://www.sinztools.app{{ page.url }}">
+	<meta property="og:image" content="https://www.sinztools.app/assets/favicon/android-chrome-512x512.png">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="{{ title or "SinzTools" }}">
+	{% if description %}
+	<meta name="twitter:description" content="{{ description }}">
+	{% endif %}
+	<meta name="twitter:image" content="https://www.sinztools.app/assets/favicon/android-chrome-512x512.png">
+
+	{% if head %}
+	{{ head | safe }}
+	{% endif %}
 	<link rel="stylesheet" href="/assets/css/style.css">
 	<link rel="stylesheet" href="/assets/css/tools.css">
 	<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
@@ -35,8 +57,15 @@
 	<script src="/assets/js/utils.js" defer></script>
 	<script src="/assets/js/script.js" defer></script>
 	<script src="/assets/js/nav.js" defer></script>
+	{% if tool == 'pdf-merge' or tool == 'image-to-pdf' or tool == 'pdf-split' %}
+	<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+	{% endif %}
 	{% if tool %}
+	{% if tool == 'pdf-merge' or tool == 'image-to-pdf' or tool == 'pdf-split' %}
+	<script src="/assets/js/{{ tool }}.js"></script>
+	{% else %}
 	<script src="/assets/js/{{ tool }}.js" defer></script>
+	{% endif %}
 	{% endif %}
 </body>
 </html>
