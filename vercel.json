@@ -1,14 +1,6 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
-      "destination": "https://www.sinztools.app/$1",
-      "statusCode": 301,
-      "condition": {
-        "host": "sinztools.app"
-      }
-    },
-    {
       "source": "/about.html",
       "destination": "/about/",
       "statusCode": 301
