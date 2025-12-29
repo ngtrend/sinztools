@@ -3,7 +3,8 @@ permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	{% set baseUrl = "https://www.sinztools.app" %}
 	{% set staticPages = [
 		"/",
@@ -19,13 +20,13 @@ eleventyExcludeFromCollections: true
 		<loc>{{ baseUrl }}{{ url }}</loc>
 		{% if url == "/" %}
 		<priority>1.0</priority>
-		<changefreq>monthly</changefreq>
+		<changefreq>weekly</changefreq>
 		{% elseif url == "/tools/" %}
 		<priority>0.9</priority>
 		<changefreq>weekly</changefreq>
 		{% else %}
 		<priority>0.5</priority>
-		<changefreq>yearly</changefreq>
+		<changefreq>monthly</changefreq>
 		{% endif %}
 	</url>
 	{% endfor %}
@@ -34,7 +35,7 @@ eleventyExcludeFromCollections: true
 	{% for tool in category.tools %}
 	<url>
 		<loc>{{ baseUrl }}/tools/{{ tool.slug }}/</loc>
-		<priority>0.7</priority>
+		<priority>0.8</priority>
 		<changefreq>monthly</changefreq>
 	</url>
 	{% endfor %}

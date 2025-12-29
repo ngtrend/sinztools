@@ -54,6 +54,16 @@ head: |-
 	<p>SinzTools is a collection of fast, privacy-first tools that run directly in your browser.</p>
 	<p>Use popular utilities like an <a href="/tools/image-compressor/">image compressor</a>, <a href="/tools/image-converter/">image converter</a>, <a href="/tools/image-resizer/">image resizer</a>, and PDF tools like <a href="/tools/pdf-merge/">merge PDFs</a> or <a href="/tools/pdf-split/">split PDFs</a>.</p>
 
+	<div class="search-container">
+		<div class="search-input-wrapper">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="search-icon" aria-hidden="true">
+				<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+			</svg>
+			<input type="text" id="toolSearch" class="tool-search-input" placeholder="Search for tools..." aria-label="Search tools">
+		</div>
+		<div id="searchResults" class="search-results"></div>
+	</div>
+
 	<h2>Why people use SinzTools</h2>
 	<ul>
 		<li><strong>Privacy-first:</strong> most tools run locally — no uploads required</li>

@@ -101,6 +101,23 @@
           "featured": true
         }
       ]
+    },
+    "video": {
+      "name": "Video tools",
+      "tools": [
+        {
+          "slug": "video-compressor",
+          "name": "Video Compressor Tool",
+          "description": "Compress videos for smaller file sizes",
+          "featured": true
+        },
+        {
+          "slug": "video-to-gif",
+          "name": "Video to GIF Converter",
+          "description": "Convert videos to animated GIFs",
+          "featured": true
+        }
+      ]
     }
   }
 }

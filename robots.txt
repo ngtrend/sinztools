@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /info/
+Disallow: /_site/
 
+# Sitemap location
 Sitemap: https://www.sinztools.app/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
