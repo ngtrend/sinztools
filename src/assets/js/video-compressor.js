@@ -118,6 +118,18 @@
             return;
         }
 
+        // Warn about very large files
+        const fileSizeMB = currentFile.size / (1024 * 1024);
+        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (isMobileDevice && fileSizeMB > 200) {
+            const proceed = confirm(`Warning: This is a large file (${fileSizeMB.toFixed(0)}MB). Compression on mobile devices may take a long time or fail due to memory limitations. Continue?`);
+            if (!proceed) return;
+        } else if (fileSizeMB > 1000) {
+            const proceed = confirm(`Warning: This is a very large file (${fileSizeMB.toFixed(0)}MB). Loading and compression may take several minutes. Continue?`);
+            if (!proceed) return;
+        }
+
         output.innerHTML = '';
         errorHandler?.clearError?.();
         compressBtn.disabled = true;
@@ -149,18 +161,52 @@
             videoElement.style.opacity = '0';
             document.body.appendChild(videoElement);
 
-            await new Promise((resolve, reject) => {
-                videoElement.onloadedmetadata = () => resolve();
-                videoElement.onerror = () => reject(new Error('Failed to load video'));
-            });
+            // Set preload to metadata first for faster initial load on mobile
+            videoElement.preload = 'metadata';
+            
+            // Dynamic timeout based on file size: 30s base + 10s per 100MB
+            const fileSizeMB = currentFile.size / (1024 * 1024);
+            const timeoutMs = 30000 + Math.floor(fileSizeMB / 100) * 10000;
+            const timeoutSeconds = Math.round(timeoutMs / 1000);
+            
+            setProgress(5, `Loading ${fileSizeMB.toFixed(0)}MB video...`);
+            
+            // Add timeout for video loading with better error messages
+            await Promise.race([
+                new Promise((resolve, reject) => {
+                    videoElement.onloadedmetadata = () => resolve();
+                    videoElement.onerror = (e) => {
+                        console.error('Video load error:', e);
+                        reject(new Error('Failed to load video. The file may be corrupted or in an unsupported format.'));
+                    };
+                }),
+                new Promise((_, reject) => 
+                    setTimeout(() => {
+                        reject(new Error(`Video loading timeout after ${timeoutSeconds}s. The file may be too large or your connection is slow. Try a smaller file.`));
+                    }, timeoutMs)
+                )
+            ]);
 
             const duration = videoElement.duration;
             // Use higher bitrate for better quality - 4 Mbps video
             const targetBitrate = 4000000;
 
+            // Detect mobile device for memory optimization
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
             // Get actual video dimensions (considering rotation)
-            const videoWidth = videoElement.videoWidth;
-            const videoHeight = videoElement.videoHeight;
+            let videoWidth = videoElement.videoWidth;
+            let videoHeight = videoElement.videoHeight;
+            
+            // On mobile, limit resolution to prevent memory issues with large videos
+            if (isMobile) {
+                const maxDimension = 1280; // Max width or height for mobile
+                if (videoWidth > maxDimension || videoHeight > maxDimension) {
+                    const scale = Math.min(maxDimension / videoWidth, maxDimension / videoHeight);
+                    videoWidth = Math.floor(videoWidth * scale);
+                    videoHeight = Math.floor(videoHeight * scale);
+                }
+            }
 
             // Create canvas to handle rotation properly
             canvasElement = document.createElement('canvas');
@@ -204,7 +250,9 @@
             });
 
             // Capture stream from canvas instead of video
-            const captureStream = canvasElement.captureStream(30); // 30 fps
+            // Use lower frame rate on mobile to reduce memory usage
+            const fps = isMobile ? 24 : 30;
+            const captureStream = canvasElement.captureStream(fps);
 
             // Add audio track from original video if present
             const videoStream = videoElement.captureStream ? videoElement.captureStream() : videoElement.mozCaptureStream();
@@ -292,7 +340,14 @@
             const progressInterval = setInterval(() => {
                 if (videoElement && duration > 0) {
                     const percent = (videoElement.currentTime / duration) * 100;
-                    setProgress(percent, `Compressing... ${Math.min(99, Math.round(percent))}%`);
+                    const roundedPercent = Math.round(percent);
+                    
+                    // Show 'Finalizing' message when near completion to avoid stuck-at-99% feeling
+                    if (roundedPercent >= 95) {
+                        setProgress(percent, `Finalizing... ${Math.min(99, roundedPercent)}%`);
+                    } else {
+                        setProgress(percent, `Compressing... ${roundedPercent}%`);
+                    }
                 }
             }, 200);
 
@@ -304,8 +359,13 @@
                     if (animationFrame) {
                         cancelAnimationFrame(animationFrame);
                     }
-                    // Wait to ensure all final frames are captured
-                    setTimeout(resolve, 2000);
+                    // Show status update immediately when video ends
+                    setProgress(98, 'Processing final frames...');
+                    // Reduced wait time from 2000ms to 500ms - enough for final frames
+                    setTimeout(() => {
+                        setProgress(99, 'Saving video...');
+                        resolve();
+                    }, 500);
                 };
             });
 
@@ -320,7 +380,7 @@
                 })
             ]);
 
-            setProgress(100, 'Finalizing...');
+            setProgress(100, 'Almost done...');
             
             // Request final data and stop
             if (mediaRecorder.state === 'recording') {
@@ -330,7 +390,8 @@
             
             // Wait for final data chunks to be written
             await recordingDone;
-            await new Promise(resolve => setTimeout(resolve, 500));
+            // Reduced from 500ms to 100ms - just enough for data to flush
+            await new Promise(resolve => setTimeout(resolve, 100));
 
             const blob = new Blob(chunks, { type: selectedMime });
             const downloadUrl = URL.createObjectURL(blob);
