@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SinzTools - Quick Submission Helper</title>
+	<style>
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+			max-width: 800px;
+			margin: 40px auto;
+			padding: 20px;
+			background: #f5f5f5;
+		}
+
+		.container {
+			background: white;
+			padding: 30px;
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		h1 {
+			color: #2563eb;
+			margin-bottom: 10px;
+		}
+
+		.subtitle {
+			color: #64748b;
+			margin-bottom: 30px;
+		}
+
+		.info-block {
+			background: #f8f9fa;
+			border-left: 4px solid #2563eb;
+			padding: 15px;
+			margin: 20px 0;
+			border-radius: 4px;
+		}
+
+		.info-block label {
+			display: block;
+			font-weight: 600;
+			color: #1a202c;
+			margin-bottom: 8px;
+		}
+
+		.info-block input,
+		.info-block textarea {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #d1d5db;
+			border-radius: 4px;
+			font-family: inherit;
+			font-size: 14px;
+		}
+
+		.info-block textarea {
+			min-height: 80px;
+			resize: vertical;
+		}
+
+		.copy-btn {
+			background: #2563eb;
+			color: white;
+			border: none;
+			padding: 8px 16px;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 14px;
+			margin-top: 8px;
+		}
+
+		.copy-btn:hover {
+			background: #1d4ed8;
+		}
+
+		.copy-btn.copied {
+			background: #10b981;
+		}
+
+		.quick-links {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 10px;
+			margin: 20px 0;
+		}
+
+		.quick-link {
+			padding: 12px;
+			background: #2563eb;
+			color: white;
+			text-decoration: none;
+			text-align: center;
+			border-radius: 4px;
+			font-weight: 500;
+			transition: background 0.2s;
+		}
+
+		.quick-link:hover {
+			background: #1d4ed8;
+		}
+
+		.tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin: 10px 0;
+		}
+
+		.tag {
+			background: #e0e7ff;
+			color: #3730a3;
+			padding: 4px 12px;
+			border-radius: 12px;
+			font-size: 13px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>🚀 SinzTools Submission Helper</h1>
+		<p class="subtitle">Copy this information when submitting to directories</p>
+
+		<div class="info-block">
+			<label>Site Name</label>
+			<input type="text" value="SinzTools" readonly>
+			<button class="copy-btn" onclick="copyText(this, 'SinzTools')">Copy</button>
+		</div>
+
+		<div class="info-block">
+			<label>Website URL</label>
+			<input type="text" value="https://www.sinztools.app" readonly>
+			<button class="copy-btn" onclick="copyText(this, 'https://www.sinztools.app')">Copy</button>
+		</div>
+
+		<div class="info-block">
+			<label>Short Description (50 characters)</label>
+			<input type="text" value="Free privacy-first online tools for images & PDFs" readonly>
+			<button class="copy-btn"
+				onclick="copyText(this, 'Free privacy-first online tools for images & PDFs')">Copy</button>
+		</div>
+
+		<div class="info-block">
+			<label>Medium Description (150 characters)</label>
+			<textarea
+				readonly>Free online tools for images, PDFs, and everyday utilities. Convert, compress, resize images and more. All tools run locally in your browser.</textarea>
+			<button class="copy-btn"
+				onclick="copyText(this, 'Free online tools for images, PDFs, and everyday utilities. Convert, compress, resize images and more. All tools run locally in your browser.')">Copy</button>
+		</div>
+
+		<div class="info-block">
+			<label>Long Description (300+ characters)</label>
+			<textarea
+				readonly>SinzTools is a free collection of privacy-first online tools for images, PDFs, and everyday utilities. All tools run entirely in your browser - your files never leave your device, ensuring complete privacy and security. Features include image compression, format conversion (PNG, JPG, WEBP), PDF merging and splitting, image resizing, cropping, and more. No uploads, no registration, 100% free forever.</textarea>
+			<button class="copy-btn"
+				onclick="copyText(this, 'SinzTools is a free collection of privacy-first online tools for images, PDFs, and everyday utilities. All tools run entirely in your browser - your files never leave your device, ensuring complete privacy and security. Features include image compression, format conversion (PNG, JPG, WEBP), PDF merging and splitting, image resizing, cropping, and more. No uploads, no registration, 100% free forever.')">Copy</button>
+		</div>
+
+		<div class="info-block">
+			<label>Categories</label>
+			<div class="tags">
+				<span class="tag">Online Tools</span>
+				<span class="tag">Productivity</span>
+				<span class="tag">Utilities</span>
+				<span class="tag">Image Tools</span>
+				<span class="tag">PDF Tools</span>
+				<span class="tag">Web Apps</span>
+				<span class="tag">Privacy</span>
+			</div>
+		</div>
+
+		<div class="info-block">
+			<label>Keywords (comma-separated)</label>
+			<textarea
+				readonly>image converter, pdf merge, image compressor, webp converter, png to jpg, online tools, browser tools, privacy tools, image resize, pdf split, favicon generator, free online tools</textarea>
+			<button class="copy-btn"
+				onclick="copyText(this, 'image converter, pdf merge, image compressor, webp converter, png to jpg, online tools, browser tools, privacy tools, image resize, pdf split, favicon generator, free online tools')">Copy</button>
+		</div>
+
+		<div class="info-block">
+			<label>Contact Email</label>
+			<input type="text" value="contact@sinztools.app" readonly>
+			<button class="copy-btn" onclick="copyText(this, 'contact@sinztools.app')">Copy</button>
+		</div>
+
+		<div class="info-block">
+			<label>Social Media Description (Twitter-style)</label>
+			<textarea readonly>🚀 SinzTools: Free browser-based tools for images & PDFs
+
+✅ 100% private (runs locally)
+✅ No uploads needed
+✅ Image compression & conversion
+✅ PDF merge/split
+✅ Free forever
+
+Try it: https://www.sinztools.app</textarea>
+			<button class="copy-btn"
+				onclick="copyText(this, '🚀 SinzTools: Free browser-based tools for images & PDFs\n\n✅ 100% private (runs locally)\n✅ No uploads needed\n✅ Image compression & conversion\n✅ PDF merge/split\n✅ Free forever\n\nTry it: https://www.sinztools.app')">Copy</button>
+		</div>
+
+		<h2 style="margin-top: 40px;">🔗 Quick Submission Links</h2>
+		<div class="quick-links">
+			<a href="https://www.producthunt.com/posts/create" target="_blank" class="quick-link">Product Hunt</a>
+			<a href="https://alternativeto.net/software/sinztools/about/" target="_blank"
+				class="quick-link">AlternativeTo</a>
+			<a href="https://github.com/new" target="_blank" class="quick-link">GitHub Repo</a>
+			<a href="https://news.ycombinator.com/submit" target="_blank" class="quick-link">Hacker News</a>
+			<a href="https://www.reddit.com/submit" target="_blank" class="quick-link">Reddit</a>
+			<a href="https://betalist.com/submit" target="_blank" class="quick-link">BetaList</a>
+		</div>
+
+		<div style="margin-top: 30px; padding: 20px; background: #fef3c7; border-radius: 8px;">
+			<h3 style="margin-top: 0;">📋 Submission Checklist</h3>
+			<p>Check off these after submitting:</p>
+			<ul>
+				<li>✅ Product Hunt</li>
+				<li>✅ GitHub repository created</li>
+				<li>✅ AlternativeTo listing</li>
+				<li>✅ Posted on Hacker News</li>
+				<li>✅ Shared on Reddit (r/webdev, r/sideproject)</li>
+				<li>✅ Listed on BetaList</li>
+			</ul>
+		</div>
+	</div>
+
+	<script>
+		function copyText(button, text) {
+			navigator.clipboard.writeText(text).then(() => {
+				const originalText = button.textContent;
+				button.textContent = '✓ Copied!';
+				button.classList.add('copied');
+
+				setTimeout(() => {
+					button.textContent = originalText;
+					button.classList.remove('copied');
+				}, 2000);
+			});
+		}
+	</script>
+</body>
+
+</html>

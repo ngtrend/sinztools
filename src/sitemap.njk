@@ -18,6 +18,7 @@ eleventyExcludeFromCollections: true
 	{% for url in staticPages %}
 	<url>
 		<loc>{{ baseUrl }}{{ url }}</loc>
+		<lastmod>2026-02-02</lastmod>
 		{% if url == "/" %}
 		<priority>1.0</priority>
 		<changefreq>weekly</changefreq>
@@ -35,6 +36,7 @@ eleventyExcludeFromCollections: true
 	{% for tool in category.tools %}
 	<url>
 		<loc>{{ baseUrl }}/tools/{{ tool.slug }}/</loc>
+		<lastmod>2026-02-02</lastmod>
 		<priority>0.8</priority>
 		<changefreq>monthly</changefreq>
 	</url>

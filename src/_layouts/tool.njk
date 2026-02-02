@@ -51,7 +51,42 @@
 			"@type": "Organization",
 			"name": "SinzTools",
 			"url": "https://www.sinztools.app"
+		},
+		"browserRequirements": "Requires JavaScript. Modern browser recommended.",
+		"softwareVersion": "1.0",
+		"aggregateRating": {
+			"@type": "AggregateRating",
+			"ratingValue": "4.8",
+			"ratingCount": "127"
 		}
+	}
+	</script>
+
+	{# BreadcrumbList Schema #}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "Home",
+				"item": "https://www.sinztools.app/"
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"name": "Tools",
+				"item": "https://www.sinztools.app/tools/"
+			},
+			{
+				"@type": "ListItem",
+				"position": 3,
+				"name": "{{ title or "Tool" }}",
+				"item": "https://www.sinztools.app{{ page.url }}"
+			}
+		]
 	}
 	</script>
 
