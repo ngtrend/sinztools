@@ -1,0 +1,119 @@
+---
+import Tool from '../../layouts/Tool.astro';
+---
+
+<Tool
+	title="Free Image Compressor Online - Reduce Image Size Without Losing Quality | SinzTools"
+	description="Compress PNG, JPG, JPEG, and WEBP images online for free. Reduce image file size by up to 90% without losing quality. No upload required - 100% private browser-based compression tool."
+	tool="image-compressor"
+>
+<style>
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0; }
+.feature-box { padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #2563eb; }
+.feature-box h3 { margin-top: 0; color: #2563eb; font-size: 1.1em; }
+.faq-section { margin: 40px 0; }
+.faq-item { margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+.faq-item h3 { margin-top: 0; color: #1a202c; font-size: 1.1em; }
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<h1>Free Image Compressor - Reduce Image Size Online</h1>
+<p>Compress your PNG, JPG, JPEG, and WEBP images to reduce file size by up to 90% while maintaining visual quality. Our free online image compression tool works entirely in your browser - no uploads to servers, no registration required, and your images stay 100% private.</p>
+
+<h2>Why Use Our Image Compressor?</h2>
+<div class="feature-grid">
+	<div class="feature-box">
+		<h3>🔒 100% Private & Secure</h3>
+		<p>All compression happens locally in your browser. Your images never leave your device.</p>
+	</div>
+	<div class="feature-box">
+		<h3>⚡ Lightning Fast</h3>
+		<p>No upload/download delays. Process images instantly without waiting.</p>
+	</div>
+	<div class="feature-box">
+		<h3>🎯 Quality Preserved</h3>
+		<p>Choose compression level to balance file size and image quality perfectly.</p>
+	</div>
+	<div class="feature-box">
+		<h3>📱 Works Offline</h3>
+		<p>Once loaded, works without internet connection. Perfect for on-the-go use.</p>
+	</div>
+</div>
+
+<h2>How to Compress Images</h2>
+<p><strong>Step 1:</strong> Click "browse" or drag and drop your image file (PNG, JPG, JPEG, or WEBP) into the drop zone below.</p>
+<p><strong>Step 2:</strong> Select your preferred compression level - Low for minimal compression with highest quality, Medium for balanced results, or High for maximum file size reduction.</p>
+<p><strong>Step 3:</strong> Click "Compress Image" and wait a moment while your browser optimizes the image.</p>
+<p><strong>Step 4:</strong> Download your compressed image with visible before/after file size comparison.</p>
+
+<div class="privacy-note">
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+	</svg>
+	Runs locally — no uploads. Your images never leave your device.
+</div>
+
+<div class="drop-zone" id="dropZone">
+	<input type="file" id="fileInput" accept="image/*" required style="display: none;">
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/>
+	</svg>
+	<p>Drop an image here or <label for="fileInput">browse</label></p>
+</div>
+
+<div id="fileInfo" style="display: none; margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px; border-left: 4px solid #007bff;">
+	<strong>Selected file:</strong> <span id="fileName"></span> (<span id="fileSize"></span>)
+</div>
+
+<label for="compressionSelect">Compression Level:</label>
+<select id="compressionSelect">
+	<option value="0.9">Low (High Quality)</option>
+	<option value="0.7">Medium</option>
+	<option value="0.5">High (Small File)</option>
+</select>
+<br><br>
+<button type="button" id="compressBtn">Compress Image</button>
+
+<div id="errorMessage" class="error-message"></div>
+<div id="output"></div>
+
+<section class="faq-section">
+	<h2>Frequently Asked Questions</h2>
+
+	<div class="faq-item">
+		<h3>Does image compression reduce quality?</h3>
+		<p>Our image compressor uses smart compression algorithms that significantly reduce file size while preserving visual quality. The Low compression setting maintains near-original quality, while Medium and High settings offer greater size reduction with minimal perceptible quality loss.</p>
+	</div>
+
+	<div class="faq-item">
+		<h3>What image formats can I compress?</h3>
+		<p>Our free image compressor supports all major image formats including PNG, JPG/JPEG, and WEBP. Each format is optimized using format-specific compression techniques for best results.</p>
+	</div>
+
+	<div class="faq-item">
+		<h3>Is there a file size limit?</h3>
+		<p>Since compression happens entirely in your browser, the only limit is your device's available memory. Most modern devices can easily handle images up to 50MB or larger.</p>
+	</div>
+
+	<div class="faq-item">
+		<h3>Are my images uploaded to your servers?</h3>
+		<p>No! This is a client-side tool - all image compression happens locally in your web browser using JavaScript. Your images never leave your device, making this tool completely private and secure.</p>
+	</div>
+
+	<div class="faq-item">
+		<h3>Why compress images?</h3>
+		<p>Compressed images load faster on websites, consume less bandwidth, save storage space, and improve SEO rankings. Smaller images mean faster page load times, better user experience, and lower hosting costs.</p>
+	</div>
+</section>
+
+<section style="margin-top: 40px;">
+	<h2>Related Image Tools</h2>
+	<ul>
+		<li><a href="/tools/image-resizer/">Image Resizer</a> - Change image dimensions and resolution</li>
+		<li><a href="/tools/image-converter/">Image Converter</a> - Convert between image formats</li>
+		<li><a href="/tools/image-crop/">Image Crop Tool</a> - Crop images to specific dimensions</li>
+		<li><a href="/tools/png-to-webp/">PNG to WEBP Converter</a> - Convert to modern WEBP format</li>
+		<li><a href="/tools/jpg-to-webp/">JPG to WEBP Converter</a> - Convert JPG to WEBP for better compression</li>
+	</ul>
+</section>
+</Tool>

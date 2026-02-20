@@ -1,0 +1,85 @@
+---
+import Tool from '../../layouts/Tool.astro';
+---
+
+<Tool
+	title="Image Crop Tool – Crop Images Online | SinzTools"
+	description="Crop images instantly in your browser. Select and crop rectangular areas from your images. No uploads required, 100% client-side processing."
+	tool="image-crop"
+>
+<style>
+.crop-container { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+.canvas-panel { flex: 1; min-width: 300px; position: relative; }
+canvas { max-width: 100%; height: auto; display: block; border: 1px solid #ccc; cursor: default; }
+.crop-selection { position: absolute; border: 2px dashed #007bff; background: rgba(0, 123, 255, 0.1); pointer-events: auto; }
+.crop-handle { position: absolute; width: 10px; height: 10px; background: #007bff; border: 1px solid #fff; cursor: pointer; pointer-events: auto; }
+.crop-handle.nw { top: -5px; left: -5px; cursor: nw-resize; }
+.crop-handle.ne { top: -5px; right: -5px; cursor: ne-resize; }
+.crop-handle.sw { bottom: -5px; left: -5px; cursor: sw-resize; }
+.crop-handle.se { bottom: -5px; right: -5px; cursor: se-resize; }
+.preview-panel { margin-top: 20px; }
+.preview-canvas { border: 1px solid #ccc; }
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<h1>Image Crop Tool</h1>
+<p>Crop your images by adjusting the selection box. The full image is selected by default — drag the edges or corners to resize, or drag inside to move the crop area.</p>
+
+<div class="controls">
+	<div class="control-group">
+		<div class="privacy-note">
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+	</svg>
+	Runs locally — no uploads. Your images never leave your device.
+</div>
+		<div class="drop-zone" id="dropZone">
+			<input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" required style="display: none;">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/>
+			</svg>
+			<p>Drop an image here or <label for="fileInput">browse</label></p>
+		</div>
+	</div>
+	<div class="control-group">
+		<input type="checkbox" id="aspectRatioCheckbox" checked>
+		<label for="aspectRatioCheckbox">Maintain aspect ratio</label>
+	</div>
+	<div id="errorMessage" class="error-message"></div>
+	<button id="cropBtn">Crop Image</button>
+	<div id="loader">Processing...</div>
+	<button id="downloadBtn" class="download-btn">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+			<path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15M9 12l3 3m0 0 3-3m-3 3V2.25"/>
+		</svg>
+		Download Cropped Image
+	</button>
+	<div class="privacy-note">Your image is processed entirely in your browser. No data is sent to any server.</div>
+</div>
+
+<div class="crop-container">
+	<div class="canvas-panel">
+		<h3>Image</h3>
+		<div id="canvasContainer" style="position: relative;">
+			<canvas id="imageCanvas"></canvas>
+		</div>
+	</div>
+	<div class="preview-panel">
+		<h3>Cropped Preview</h3>
+		<canvas id="previewCanvas" class="preview-canvas"></canvas>
+	</div>
+</div>
+
+<h2>How this Image Crop Tool works</h2>
+<p>This tool allows you to crop your images by adjusting a pre-selected area that covers the entire image. Use the corner handles to resize the selection or drag inside the selection to move it. The cropped result is shown in the preview and can be downloaded.</p>
+
+<h2>Supported formats & features</h2>
+<p>Supports PNG, JPG, and WEBP images. You can maintain aspect ratio while resizing the selection. All processing happens locally without uploading to any server.</p>
+
+<h3>Related tools</h3>
+<ul>
+	<li><a href="/tools/image-resizer/">Image Resizer</a></li>
+	<li><a href="/tools/image-compressor/">Image Compressor</a></li>
+	<li><a href="/tools/image-converter/">Image Converter</a></li>
+</ul>
+</Tool>

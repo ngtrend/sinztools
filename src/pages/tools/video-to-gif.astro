@@ -1,0 +1,238 @@
+---
+import Tool from '../../layouts/Tool.astro';
+
+const extraHead = `<script src="https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js"></script>`;
+---
+
+<Tool
+	title="Video to GIF Converter – Free Online | SinzTools"
+	description="Convert videos to animated GIFs for free. Works on mobile and desktop. No uploads required - 100% private and secure. Browser-based GIF conversion."
+	tool="video-to-gif"
+	extraHead={extraHead}
+>
+<style>
+.controls-section {
+	margin: 20px 0;
+	padding: 15px;
+	background: #f8f9fa;
+	border-radius: 8px;
+	border-left: 4px solid #007bff;
+}
+
+.control-group {
+	margin: 15px 0;
+}
+
+.control-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 600;
+	color: var(--text-color);
+}
+
+.control-group input[type="number"],
+.control-group input[type="range"],
+.control-group select {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.control-group input[type="range"] {
+	padding: 0;
+}
+
+.range-value {
+	display: inline-block;
+	margin-left: 10px;
+	font-weight: 600;
+	color: var(--primary-color);
+}
+
+.quality-presets {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 10px;
+	margin: 10px 0;
+}
+
+.preset-btn {
+	padding: 12px;
+	background: white;
+	border: 2px solid var(--border-color);
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	text-align: center;
+	color: var(--text-color);
+}
+
+.preset-btn:hover {
+	border-color: var(--primary-color);
+	background: #f0f7ff;
+}
+
+.preset-btn.active {
+	border-color: var(--primary-color);
+	background: var(--primary-color);
+	color: white;
+}
+
+.preset-btn .preset-label {
+	font-weight: 600;
+	display: block;
+	margin-bottom: 4px;
+}
+
+.preset-btn .preset-desc {
+	font-size: 12px;
+	opacity: 0.8;
+}
+
+.progress-container {
+	margin: 20px 0;
+	display: none;
+}
+
+.progress-bar {
+	width: 100%;
+	height: 20px;
+	background: #f0f0f0;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.progress-fill {
+	height: 100%;
+	background: #28a745;
+	width: 0%;
+	transition: width 0.2s linear;
+}
+
+.cancel-btn {
+	margin-top: 10px;
+	padding: 6px 12px;
+	background-color: #dc3545;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.cancel-btn:hover {
+	background-color: #c82333;
+}
+
+.info-box {
+	background: #d1ecf1;
+	border: 1px solid #bee5eb;
+	color: #0c5460;
+	padding: 12px;
+	border-radius: 4px;
+	margin: 15px 0;
+	font-size: 14px;
+}
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<h1>Video to GIF Converter</h1>
+<p>Convert short videos into animated GIFs directly in your browser. Perfect for creating shareable animations from your favorite video clips.</p>
+
+<div class="privacy-note">
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+	</svg>
+	100% private — no uploads. Your videos never leave your device.
+</div>
+
+<div class="info-box">
+	<strong>💡 Best results with short videos</strong>
+	GIFs work best with videos under 15 seconds. Longer videos may create very large files or cause browser slowdowns.
+</div>
+
+<h2>Upload Video</h2>
+<div class="drop-zone" id="dropZone">
+	<input type="file" id="fileInput" accept="video/*" required style="display: none;">
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/>
+	</svg>
+	<p>Drop a video here or <label for="fileInput">browse</label></p>
+	<p style="font-size: 12px; color: #666;">Supports MP4, WebM, MOV, AVI</p>
+</div>
+
+<div id="fileInfo" style="display: none; margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px; border-left: 4px solid #007bff;">
+	<strong>Selected file:</strong> <span id="fileName"></span> (<span id="fileSize"></span>)
+	<div id="videoDuration" style="margin-top: 5px;"></div>
+</div>
+
+<div class="controls-section" id="controlsSection" style="display: none;">
+	<h3>GIF Settings</h3>
+
+	<div class="control-group">
+		<label>Quality Preset</label>
+		<div class="quality-presets">
+			<button type="button" class="preset-btn" data-preset="small">
+				<span class="preset-label">Small</span>
+				<span class="preset-desc">Low file size</span>
+			</button>
+			<button type="button" class="preset-btn active" data-preset="balanced">
+				<span class="preset-label">Balanced</span>
+				<span class="preset-desc">Recommended</span>
+			</button>
+			<button type="button" class="preset-btn" data-preset="high">
+				<span class="preset-label">High Quality</span>
+				<span class="preset-desc">Desktop only</span>
+			</button>
+		</div>
+	</div>
+</div>
+
+<button class="tool-btn" id="convertBtn" style="display: none;">Convert to GIF</button>
+
+<div class="progress-container" id="progressContainer">
+	<div class="progress-bar">
+		<div class="progress-fill" id="progressFill"></div>
+	</div>
+	<div id="progressText" style="margin-top: 10px;">Preparing...</div>
+	<button type="button" id="cancelBtn" class="cancel-btn">Cancel</button>
+</div>
+
+<div id="errorMessage" class="error-message"></div>
+<div id="output" style="margin-top: 20px;"></div>
+
+<h2>How to use this Video to GIF Converter</h2>
+<ol>
+	<li><strong>Upload your video</strong> — Select a video file from your device (works with MP4, WebM, MOV, AVI)</li>
+	<li><strong>Choose quality preset</strong> — Select Small (for sharing), Balanced (recommended), or High Quality (desktop only)</li>
+	<li><strong>Convert</strong> — Click "Convert to GIF" and wait for processing</li>
+	<li><strong>Download</strong> — Save your animated GIF to your device</li>
+</ol>
+
+<h2>Tips for creating great GIFs</h2>
+<ul>
+	<li><strong>Keep it short:</strong> 3-10 second clips work best for GIFs</li>
+	<li><strong>Choose interesting moments:</strong> Look for clips with clear action or emotion</li>
+	<li><strong>Watch file size:</strong> Longer, higher-quality GIFs can be 10+ MB</li>
+	<li><strong>Test on mobile:</strong> If sharing online, use Small or Balanced preset</li>
+	<li><strong>Frame rate matters:</strong> 10-15 FPS is usually enough for most GIFs</li>
+</ul>
+
+<h2>Privacy & Security</h2>
+<p>Your videos are processed entirely in your web browser using WebAssembly. No files are uploaded to any server. Everything stays on your device, ensuring complete privacy and security.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What video formats are supported?</h3>
+<p>This tool supports MP4, WebM, MOV, and AVI video formats. Most common video files will work.</p>
+
+<h3>Why is there a 15-second limit?</h3>
+<p>GIF files can become very large with longer videos, potentially causing browser slowdowns or crashes, especially on mobile devices.</p>
+
+<h3>Why is my GIF file so large?</h3>
+<p>GIF file size depends on duration, frame rate, resolution, and quality. To reduce size: use shorter clips, lower frame rate (5-10 FPS), smaller dimensions, or the "Small" quality preset.</p>
+
+<h3>Will this work on my phone?</h3>
+<p>Yes! This tool works on mobile browsers. However, for best performance on phones, use shorter clips (under 10 seconds) and the "Small" or "Balanced" preset.</p>
+</Tool>

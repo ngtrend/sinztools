@@ -1,0 +1,110 @@
+---
+import Tool from '../../layouts/Tool.astro';
+---
+
+<Tool
+	title="PDF Split Tool – Split PDF Online Free | SinzTools"
+	description="Split PDF files online for free. Extract pages from PDF documents instantly in your browser. No uploads required, 100% client-side processing."
+	tool="pdf-split"
+>
+<style>
+.pdf-split-container { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+.upload-panel { flex: 1; min-width: 300px; }
+.pages-panel { flex: 1; min-width: 300px; }
+.page-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin-top: 15px; }
+.page-item { border: 1px solid #ddd; border-radius: 4px; padding: 10px; text-align: center; background: white; }
+.page-item.selected { border-color: #007bff; background: #f8f9ff; }
+.page-checkbox { margin-bottom: 5px; }
+.page-number { font-weight: bold; color: #333; }
+.selection-controls { display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
+.selection-controls button { padding: 6px 12px; border: 1px solid #ccc; background: white; border-radius: 3px; cursor: pointer; color: #333; }
+.selection-controls button:hover { background: #f8f9fa; }
+.range-input { margin: 15px 0; }
+.range-input label { display: block; margin-bottom: 5px; font-weight: bold; }
+.range-input input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 3px; }
+.split-btn { background: #28a745; color: white; border: none; padding: 12px 24px; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; display: flex; align-items: center; gap: 8px; margin-top: 20px; }
+.split-btn:hover { background: #218838; }
+.split-btn:disabled { background: #6c757d; cursor: not-allowed; }
+.split-btn .icon { width: 16px; height: 16px; }
+.pdf-info { background: #f8f9fa; padding: 15px; border-radius: 4px; margin: 15px 0; border-left: 4px solid #007bff; }
+.pdf-info-item { margin-bottom: 5px; }
+.pdf-info-label { font-weight: bold; color: #666; }
+.pdf-info-value { color: #333; }
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<h1>PDF Split Tool</h1>
+<p>Split PDF files and extract specific pages. Select individual pages or enter page ranges to create a new PDF with only the pages you need.</p>
+
+<div class="privacy-note">
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+	</svg>
+	Runs locally — no uploads. Your PDFs never leave your device.
+</div>
+
+<div class="pdf-split-container">
+	<div class="upload-panel">
+		<div class="drop-zone" id="dropZone">
+			<input type="file" id="fileInput" accept="application/pdf" required style="display: none;">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/>
+			</svg>
+			<p>Drop a PDF file here or <label for="fileInput">browse</label></p>
+			<small style="color: #666;">Select a single PDF file to split</small>
+		</div>
+
+		<div id="pdfInfo" class="pdf-info" style="display: none;">
+			<div class="pdf-info-item">
+				<span class="pdf-info-label">File:</span> <span class="pdf-info-value" id="pdfName"></span>
+			</div>
+			<div class="pdf-info-item">
+				<span class="pdf-info-label">Size:</span> <span class="pdf-info-value" id="pdfSize"></span>
+			</div>
+			<div class="pdf-info-item">
+				<span class="pdf-info-label">Pages:</span> <span class="pdf-info-value" id="pdfPages"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="pages-panel">
+		<h3>Select Pages to Extract</h3>
+
+		<div class="selection-controls">
+			<button id="selectAllBtn">Select All</button>
+			<button id="clearAllBtn">Clear All</button>
+		</div>
+
+		<div class="range-input">
+			<label for="pageRange">Or enter page ranges (e.g., 1-3,5,7-9):</label>
+			<input type="text" id="pageRange" placeholder="1-3,5,7-9" />
+		</div>
+
+		<div id="pagesContainer" style="display: none;">
+			<h4>Pages (<span id="selectedCount">0</span> selected)</h4>
+			<div id="pageGrid" class="page-grid"></div>
+		</div>
+
+		<button id="splitBtn" class="split-btn" disabled>
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m0 0l-3-3m3 3l3-3m-3-1.5V18a2 2 0 002 2h4a2 2 0 002-2v-6a2 2 0 00-2-2h-1"/>
+			</svg>
+			Extract Pages
+		</button>
+
+		<div class="loading" id="loading">
+			<div class="spinner"></div>
+			<p>Extracting pages... This may take a moment.</p>
+		</div>
+	</div>
+</div>
+
+<div id="errorMessage" class="error-message"></div>
+<div id="output"></div>
+
+<h2>How this PDF Split tool works</h2>
+<p>This tool uses your browser's built-in PDF processing capabilities to extract specific pages from your PDF document. All processing happens locally in your browser - your PDF never leaves your device, ensuring complete privacy and security.</p>
+
+<h2>Supported features</h2>
+<p>Select individual pages using checkboxes, use "Select All" or "Clear All" buttons, or enter page ranges (like 1-3,5,7-9). The extracted pages will be saved as a new PDF file while preserving the original quality.</p>
+</Tool>

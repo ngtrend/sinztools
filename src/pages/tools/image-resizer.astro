@@ -1,0 +1,175 @@
+---
+import Tool from '../../layouts/Tool.astro';
+---
+
+<Tool
+	title="Free Image Resizer Online - Resize Images to Any Dimension Instantly | SinzTools"
+	description="Resize images online for free. Change dimensions, scale by percentage, or use preset sizes. Maintain aspect ratio or custom resize. Supports PNG, JPG, WEBP. No upload - 100% private browser-based tool."
+	tool="image-resizer"
+>
+<style>
+.resizer-container { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+.preview-panel { flex: 1; min-width: 300px; }
+canvas { max-width: 100%; border: 1px solid #ccc; }
+.preset-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
+.preset-btn { padding: 5px 10px; background: #e9ecef; border: 1px solid #ccc; cursor: pointer; border-radius: 4px; }
+.preset-btn:hover { background: #dee2e6; }
+.percentage-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
+.percentage-btn { padding: 5px 10px; background: #e9ecef; border: 1px solid #ccc; cursor: pointer; border-radius: 4px; }
+.percentage-btn:hover { background: #dee2e6; }
+.format-select { margin-bottom: 15px; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0; }
+.feature-box { padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #2563eb; }
+.feature-box h3 { margin-top: 0; color: #2563eb; font-size: 1.1em; }
+.faq-section { margin: 40px 0; }
+.faq-item { margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+.faq-item h3 { margin-top: 0; color: #1a202c; font-size: 1.1em; }
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<h1>Free Image Resizer - Resize Images Online Instantly</h1>
+<p>Resize images to any dimension with our free online image resizer. Scale by percentage, use preset sizes, or enter custom dimensions. Maintain aspect ratio automatically or resize to exact specifications. Perfect for social media, web optimization, and email attachments.</p>
+
+<h2>Why Use Our Image Resizer?</h2>
+<div class="feature-grid">
+	<div class="feature-box">
+		<h3>🎯 Multiple Resize Options</h3>
+		<p>Resize by percentage, custom dimensions, or use popular preset sizes.</p>
+	</div>
+	<div class="feature-box">
+		<h3>🔒 Privacy Protected</h3>
+		<p>Images processed locally in your browser. Never uploaded to servers.</p>
+	</div>
+	<div class="feature-box">
+		<h3>📊 Aspect Ratio Lock</h3>
+		<p>Automatically maintain proportions or customize to exact dimensions.</p>
+	</div>
+	<div class="feature-box">
+		<h3>💾 Format Flexibility</h3>
+		<p>Keep original format or convert to PNG, JPG, or WEBP while resizing.</p>
+	</div>
+</div>
+
+<h2>How to Resize Images</h2>
+<p><strong>Step 1:</strong> Upload your image by clicking "browse" or dragging and dropping the file.</p>
+<p><strong>Step 2:</strong> Choose a resize method - use preset sizes, enter custom dimensions, or scale by percentage.</p>
+<p><strong>Step 3:</strong> Optionally change the output format (JPG, PNG, or WEBP).</p>
+<p><strong>Step 4:</strong> Click "Resize Image" and download your resized image.</p>
+
+<div class="controls">
+	<div class="control-group">
+		<div class="privacy-note">
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+	</svg>
+	Runs locally — no uploads. Your images never leave your device.
+</div>
+		<div class="drop-zone" id="dropZone">
+			<input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" required style="display: none;">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/>
+			</svg>
+			<p>Drop an image here or <label for="fileInput">browse</label></p>
+		</div>
+	</div>
+	<div class="control-group">
+		<label>Preset Sizes:</label>
+		<div class="preset-buttons">
+			<button class="preset-btn" data-width="1920" data-height="1080">1920x1080</button>
+			<button class="preset-btn" data-width="1080" data-height="1080">1080x1080</button>
+			<button class="preset-btn" data-width="1280" data-height="720">1280x720</button>
+			<button class="preset-btn" data-width="800" data-height="600">800x600</button>
+			<button class="preset-btn" data-width="400" data-height="400">400x400</button>
+		</div>
+	</div>
+	<div class="control-group">
+		<label>Percentage Resize:</label>
+		<div class="percentage-buttons">
+			<button class="percentage-btn" data-percentage="100">100%</button>
+			<button class="percentage-btn" data-percentage="75">75%</button>
+			<button class="percentage-btn" data-percentage="50">50%</button>
+			<button class="percentage-btn" data-percentage="25">25%</button>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="widthInput">Width (px):</label>
+		<input type="number" id="widthInput" min="1" placeholder="Width">
+	</div>
+	<div class="control-group">
+		<label for="heightInput">Height (px):</label>
+		<input type="number" id="heightInput" min="1" placeholder="Height">
+	</div>
+	<div class="control-group">
+		<input type="checkbox" id="aspectRatioCheckbox" checked>
+		<label for="aspectRatioCheckbox">Maintain aspect ratio</label>
+	</div>
+	<div class="control-group format-select">
+		<label for="formatSelect">Output Format:</label>
+		<select id="formatSelect">
+			<option value="original">Keep original format</option>
+			<option value="jpg">JPG</option>
+			<option value="png">PNG</option>
+			<option value="webp">WEBP</option>
+		</select>
+	</div>
+	<div id="infoDisplay" class="info-display"></div>
+	<div id="errorMessage" class="error-message"></div>
+	<button id="resizeBtn">Resize Image</button>
+	<div id="loader">Resizing...</div>
+	<button id="downloadBtn" class="download-btn">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+			<path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15M9 12l3 3m0 0 3-3m-3 3V2.25"/>
+		</svg>
+		Download Resized Image
+	</button>
+	<div class="privacy-note">Your image is processed entirely in your browser. No data is sent to any server.</div>
+</div>
+
+<div class="resizer-container">
+	<div class="preview-panel">
+		<h3>Original</h3>
+		<canvas id="originalCanvas"></canvas>
+	</div>
+	<div class="preview-panel">
+		<h3>Resized</h3>
+		<canvas id="resizedCanvas"></canvas>
+	</div>
+</div>
+
+<section style="margin-top: 40px;">
+	<h2>Common Image Resize Use Cases</h2>
+	<p><strong>Social Media:</strong> Different platforms require specific image dimensions. Use our preset sizes or enter custom dimensions for Instagram (1080x1080), Facebook (1200x630), Twitter (1200x675), and LinkedIn (1200x627).</p>
+	<p><strong>Website Optimization:</strong> Resize large images to appropriate dimensions before uploading to your website. This improves page load speed and SEO performance.</p>
+	<p><strong>Email Attachments:</strong> Reduce image dimensions to shrink file size for email attachments.</p>
+	<p><strong>Thumbnails:</strong> Create smaller preview images for galleries and product catalogs.</p>
+</section>
+
+<section class="faq-section">
+	<h2>Frequently Asked Questions About Image Resizing</h2>
+
+	<div class="faq-item">
+		<h3>What happens to image quality when I resize?</h3>
+		<p>When downsizing (making images smaller), quality is generally preserved well. When upsizing (making images larger), some quality loss or pixelation may occur. For best results, always resize down from a high-resolution source image.</p>
+	</div>
+
+	<div class="faq-item">
+		<h3>What does "maintain aspect ratio" mean?</h3>
+		<p>Aspect ratio is the proportional relationship between width and height. When enabled, changing one dimension automatically adjusts the other to keep the image from appearing stretched or squished.</p>
+	</div>
+
+	<div class="faq-item">
+		<h3>Is my image uploaded to your server?</h3>
+		<p>No! This image resizer works entirely in your web browser using HTML5 Canvas technology. Your images are processed locally on your device and never uploaded anywhere.</p>
+	</div>
+</section>
+
+<section style="margin-top: 40px;">
+	<h2>Related Image Tools</h2>
+	<ul>
+		<li><a href="/tools/image-compressor/">Image Compressor</a> - Reduce file size after resizing</li>
+		<li><a href="/tools/image-crop/">Image Crop Tool</a> - Crop images to specific areas</li>
+		<li><a href="/tools/image-converter/">Image Converter</a> - Convert between image formats</li>
+		<li><a href="/tools/favicon-generator/">Favicon Generator</a> - Create favicons at multiple sizes</li>
+	</ul>
+</section>
+</Tool>

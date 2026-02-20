@@ -1,0 +1,109 @@
+---
+import Tool from '../../layouts/Tool.astro';
+---
+
+<Tool
+	title="Free PNG to JPG Converter Online - Convert PNG to JPEG Instantly | SinzTools"
+	description="Convert PNG to JPG/JPEG online free with our instant browser-based converter. No upload required - 100% private and secure. Convert transparent PNG to JPG with white background."
+	tool="png-to-jpg"
+>
+<style>
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0; }
+.feature-box { padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #2563eb; }
+.feature-box h3 { margin-top: 0; color: #2563eb; font-size: 1.1em; }
+.faq-section { margin: 40px 0; }
+.faq-item { margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+.faq-item h3 { margin-top: 0; color: #1a202c; font-size: 1.1em; }
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<h1>PNG to JPG Converter - Free Online PNG to JPEG Conversion</h1>
+<p>Convert PNG images to JPG/JPEG format instantly with our free online converter. Process images directly in your browser without uploading to any server - ensuring complete privacy and security. Perfect for converting transparent PNGs to JPG for websites, emails, and social media platforms.</p>
+
+<h2>Why Convert PNG to JPG?</h2>
+<div class="feature-grid">
+	<div class="feature-box">
+		<h3>📉 Smaller File Sizes</h3>
+		<p>JPG files are typically 50-75% smaller than PNGs, perfect for faster website loading and reduced storage.</p>
+	</div>
+	<div class="feature-box">
+		<h3>🌐 Better Compatibility</h3>
+		<p>JPG is universally supported across all platforms, devices, and social media networks.</p>
+	</div>
+	<div class="feature-box">
+		<h3>🔒 100% Private</h3>
+		<p>Conversion happens in your browser. Your images never touch our servers.</p>
+	</div>
+	<div class="feature-box">
+		<h3>⚡ Instant Results</h3>
+		<p>No waiting for uploads or downloads. Convert images in seconds.</p>
+	</div>
+</div>
+
+<h2>How to Convert PNG to JPG</h2>
+<p><strong>Step 1:</strong> Click the "browse" button or drag and drop your PNG image into the drop zone below.</p>
+<p><strong>Step 2:</strong> Click the "Convert to JPG" button to start the conversion process.</p>
+<p><strong>Step 3:</strong> Download your converted JPG image immediately. Transparent areas will be filled with white background.</p>
+
+<div class="privacy-note">
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+	</svg>
+	Runs locally — no uploads. Your images never leave your device.
+</div>
+
+<div class="drop-zone" id="dropZone">
+	<input type="file" id="fileInput" accept="image/png" required style="display: none;">
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="icon">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/>
+	</svg>
+	<p>Drop an image here or <label for="fileInput">browse</label></p>
+</div>
+
+<div id="fileInfo" style="display: none; margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px; border-left: 4px solid #007bff;">
+	<strong>Selected file:</strong> <span id="fileName"></span> (<span id="fileSize"></span>)
+</div>
+
+<button type="button" id="convertBtn">Convert to JPG</button>
+
+<div id="errorMessage" class="error-message"></div>
+<div id="output"></div>
+
+<section style="margin-top: 40px;">
+	<h2>Understanding PNG vs JPG</h2>
+	<p><strong>PNG (Portable Network Graphics)</strong> is a lossless format that supports transparency and is ideal for graphics, logos, and images with text. However, PNG files are typically larger in size.</p>
+	<p><strong>JPG/JPEG (Joint Photographic Experts Group)</strong> uses lossy compression to create much smaller files, making it perfect for photographs and images where transparency isn't needed.</p>
+	<p><strong>When to convert:</strong> Use this converter when you need smaller file sizes for web use, email attachments, or when uploading to platforms that don't support PNG.</p>
+</section>
+
+<section class="faq-section">
+	<h2>Frequently Asked Questions</h2>
+
+	<div class="faq-item">
+		<h3>What happens to transparent backgrounds when converting PNG to JPG?</h3>
+		<p>JPG format doesn't support transparency. When you convert a PNG with a transparent background to JPG, the transparent areas will be filled with a solid white background. If you need to preserve transparency, consider using WEBP format instead.</p>
+	</div>
+
+	<div class="faq-item">
+		<h3>Will I lose image quality converting PNG to JPG?</h3>
+		<p>JPG uses lossy compression, so there will be some quality loss, but it's usually imperceptible for photographs and most images. Our converter uses high-quality settings (90% quality) to minimize any visible degradation.</p>
+	</div>
+
+	<div class="faq-item">
+		<h3>Is it safe to convert PNG to JPG using your tool?</h3>
+		<p>Absolutely! This is a client-side tool - all conversion happens in your web browser using HTML5 Canvas technology. Your images are never uploaded to our servers.</p>
+	</div>
+</section>
+
+<section style="margin-top: 40px;">
+	<h2>Related Image Conversion Tools</h2>
+	<ul>
+		<li><a href="/tools/jpg-to-webp/">JPG to WEBP Converter</a> - Convert to modern WEBP format</li>
+		<li><a href="/tools/png-to-webp/">PNG to WEBP Converter</a> - Convert PNG to WEBP with transparency</li>
+		<li><a href="/tools/webp-to-jpg/">WEBP to JPG Converter</a> - Convert WEBP back to JPG</li>
+		<li><a href="/tools/image-converter/">Universal Image Converter</a> - Convert between all formats</li>
+		<li><a href="/tools/image-compressor/">Image Compressor</a> - Reduce JPG file size further</li>
+		<li><a href="/tools/image-resizer/">Image Resizer</a> - Change image dimensions</li>
+	</ul>
+</section>
+</Tool>
